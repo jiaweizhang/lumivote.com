@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="/bs.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet" />
     
     <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script data-require="bootstrap@*" data-semver="3.3.1" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -73,10 +73,7 @@
 				</div>
 			</div>
 		</nav>
-		<div class="alert alert-info">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			<strong>Info!</strong> Download our Android App!
-		</div>
+		
 		<div class="container">
 			<div class="jumbotron">
 				<h1>Legislators</h1>
@@ -85,34 +82,48 @@
 			</div>
 		</div>
 		<div class="container">
-		<h2>Options</h2>
 			<form class="form-horizontal" role="form">
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="party">Party:</label>
-					<div class="col-sm-10">
-						<input type="checkbox" toggle-checkbox ng-model="partyFilter.republican" data-on="Republican" data-off="Republican" data-onstyle="danger" ng-init="partyFilter.republican=false"> 
+					<label class="control-label col-sm-1" for="party">Party:</label>
+					<div class="col-sm-11">
+						<input type="checkbox" toggle-checkbox ng-model="partyFilter.republican" data-on="Republican" data-off="Republican" data-style="android" data-onstyle="danger" ng-init="partyFilter.republican=false"> 
 				
-						<input type="checkbox" toggle-checkbox ng-model="partyFilter.democrat" data-on="Democrat" data-off="Democrat" data-onstyle="primary" ng-init="partyFilter.democrat=false"> 
-				
-						<input type="checkbox" toggle-checkbox ng-model="partyFilter.independent" data-on="Independent" data-off="Independent" data-onstyle="success" ng-init="partyFilter.independent=false"> 
+						<input type="checkbox" toggle-checkbox ng-model="partyFilter.democrat" data-on="Democrat" data-off="Democrat" data-style="android" data-onstyle="primary" ng-init="partyFilter.democrat=false"> 
+						<style>
+  							.toggle.android { border-radius: 0px; }
+  							.toggle.android .toggle-handle { border-radius: 0px; }
+						</style>
+						<input type="checkbox" toggle-checkbox ng-model="partyFilter.independent" data-on="Independent" data-off="Independent" data-style="android" data-onstyle="success" ng-init="partyFilter.independent=false"> 
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="pwd">Password:</label>
-					<div class="col-sm-10">          
-						<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+					<label class="control-label col-sm-1" for="chamber">Chamber:</label>
+					<div class="col-sm-11">          
+						<input type="checkbox" toggle-checkbox ng-model="chamberFilter.house" data-on="House" data-off="House" data-style="android" data-onstyle="success" data-width="150" data-height="30" ng-init="chamberFilter.house=false"> 
+				
+						<input type="checkbox" toggle-checkbox ng-model="chamberFilter.senate" data-on="Senate" data-off="Senate" data-style="android" data-onstyle="danger" ng-init="chamberFilter.senate=false"> 
 					</div>
 				</div>
-				<div class="form-group">        
-					<div class="col-sm-offset-2 col-sm-10">
-						<div class="checkbox">
-							<label><input type="checkbox"> Remember me</label>
-						</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="gender">Gender:</label>
+					<div class="col-sm-11">          
+						<input type="checkbox" toggle-checkbox ng-model="genderFilter.male" data-on="Male" data-off="Male" data-style="android" data-onstyle="danger" ng-init="genderFilter.male=false"> 
+				
+						<input type="checkbox" toggle-checkbox ng-model="genderFilter.female" data-on="Female" data-off="Female" data-style="android" data-onstyle="info" ng-init="genderFilter.female=false">
 					</div>
 				</div>
-				<div class="form-group">        
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Submit</button>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="state">State:</label>
+					<div class="col-sm-11">          
+						<input type="text" ng-model="stateFilter" placeholder="State Search" ng-init="stateFilter=''">
+						<span class="help-block">Searches both state name and state abbreviations.</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="keywords">Keywords:</label>
+					<div class="col-sm-11">          
+						<input type="text" ng-model="testFilter" placeholder="Search">
+						<span class="help-block">Searches all categories using keywords.</span>
 					</div>
 				</div>
 			</form>
@@ -122,31 +133,7 @@
 				<input type="text" ng-model="stateInput" size="2" placeholder="State">
 				<input type="submit">
 			</form>-->
-			Party: 
-			<div class="btn btn-default">
-				<input type="checkbox" toggle-checkbox ng-model="partyFilter.republican" data-on="Republican" data-off="Republican" data-onstyle="danger" ng-init="partyFilter.republican=false"> 
-				
-				<input type="checkbox" toggle-checkbox ng-model="partyFilter.democrat" data-on="Democrat" data-off="Democrat" data-onstyle="primary" ng-init="partyFilter.democrat=false"> 
-				
-				<input type="checkbox" toggle-checkbox ng-model="partyFilter.independent" data-on="Independent" data-off="Independent" data-onstyle="success" ng-init="partyFilter.independent=false"> 
-				
-			</div>
-			<br/>
-			Chamber: 
-			<div class="btn btn-default">
-				<input type="checkbox" toggle-checkbox ng-model="chamberFilter.house" data-on="House" data-off="House" data-onstyle="success" ng-init="chamberFilter.house=false"> 
-				
-				<input type="checkbox" toggle-checkbox ng-model="chamberFilter.senate" data-on="Senate" data-off="Senate" data-onstyle="danger" ng-init="chamberFilter.senate=false"> 
-				
-			</div>
-			<br/>
-			Gender: 
-			<div class="btn btn-default">
-				<input type="checkbox" toggle-checkbox ng-model="genderFilter.male" data-on="Male" data-off="Male" data-onstyle="danger" ng-init="genderFilter.male=false"> 
-				
-				<input type="checkbox" toggle-checkbox ng-model="genderFilter.female" data-on="Female" data-off="Female" data-onstyle="info" ng-init="genderFilter.female=false">
-				
-			</div>
+			
 
 			<!-- working toggling
 			<label class="btn btn-default">
@@ -157,15 +144,11 @@
 			</label>-->
 
 
-			<form>
-				Search: <input type="text" ng-model="testFilter" placeholder="Search">
-			</form>
+		
 
-			<form>
-				State Search: <input type="text" ng-model="stateFilter" placeholder="State Search" ng-init="stateFilter=''">
-			</form>
+			
 
-			Number of results: {{names.length}}
+			<!--Number of results: {{names.length}}
 			<br/>
 			PartyBools: {{partyFilter.republican}}::{{partyFilter.democrat}}::{{partyFilter.independent}}
 			<br/>
@@ -173,7 +156,7 @@
 			<br/>
 			GenderBools: {{genderFilter.male}}::{{genderFilter.female}}
 			<br/>
-			StateSearch: {{stateFilter}}
+			StateSearch: {{stateFilter}}-->
 
 			<!--<div class="col-md-12">
 				<input toggle-checkbox class="form-control schedule" ng-model="schedule" ng-change='toggleschedule()' type="checkbox" >
@@ -186,7 +169,7 @@
 			</div>-->
 
 		</div>
-		<div class="container">
+		<div class="container table-responsive">
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
@@ -194,7 +177,6 @@
 						<th>Image</th>
 						<th>First Name</th>
 						<th>Last Name</th>
-						<th>Gender</th>
 						<th>State</th>
 						<th>State</th>
 						<th>Party</th>
@@ -204,16 +186,15 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="x in names | filter:testFilter |filter:theseParties | filter:theseChambers | filter:theseGenders |filter:theseStates ">
-						<td>{{ $index + 1 }}</td>
-						<th><img class="img-responsive" ng-src="https://theunitedstates.io/images/congress/225x275/{{x.bioguide_id}}.jpg" alt="New Delegate. Picture not found."></th>
-						<td>{{ x.first_name }}</td>
-						<td>{{ x.last_name }}</td>
-						<td>{{ x.gender }}</td>
-						<td>{{ x.state }}</td>
-						<td>{{ x.state_name }}</td>
-						<td>{{ x.party }}</td>
-						<td>{{ x.chamber }}</td>
-						<td><a target="_blank" ng-href="{{ x.website }}">Link</a></td>
+						<td class="col-sm-0.7">{{ $index + 1 }}</td>
+						<th class="col-sm-2.0"><img height="150" ng-src="https://theunitedstates.io/images/congress/225x275/{{x.bioguide_id}}.jpg" alt="Legislator"></th>
+						<td class="col-sm-1">{{ x.first_name }}</td>
+						<td class="col-sm-2.3">{{ x.last_name }}</td>
+						<td class="col-sm-1">{{ x.state }}</td>
+						<td class="col-sm-2">{{ x.state_name }}</td>
+						<td class="col-sm-1">{{ x.party }}</td>
+						<td class="col-sm-1">{{ x.chamber }}</td>
+						<td class="col-sm-1"><a target="_blank" ng-href="{{ x.website }}">Link</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -290,10 +271,10 @@
 				if ($scope.stateFilter.length==0) {
 					return true;
 				}
-				if (item.state.toLowerCase().indexOf(($scope.stateFilter).toLowerCase())!=-1) {
+				if (item.state.toLowerCase().indexOf(($scope.stateFilter).toLowerCase())==0) {
 					return true;
 				}
-				if (item.state_name.toLowerCase().indexOf(($scope.stateFilter).toLowerCase())!=-1) {
+				if (item.state_name.toLowerCase().indexOf(($scope.stateFilter).toLowerCase())==0) {
 					return true;
 				}
 				return false;
