@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Votes</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+    
+    <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.3.1" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.0-beta.2/angular.js" data-semver="1.4.0-beta.2" data-require="angular.js@*"></script>
+    
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.1.0/js/bootstrap-toggle.min.js"></script>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="customersCtrl"> 
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+				</button>
+				<a class="navbar-brand" href="#">Lumivote</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="../"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+					<li><a href="../timeline">Timeline</a></li>
+					<li><a href="../candidates">Candidates</a></li>
+					<li><a href="../legislators">Legislators</a></li>
+					<li><a href="../bills">Bills</a></li>
+					<li class="active"><a href="">Votes</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="">Dropdown
+							<span class="caret">
+								
+							</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Something</a></li>
+							<li><a href="#">Else</a></li>
+							<li><a href="#">Another</a></li> 
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="https://play.google.com/store"><span class="glyphicon glyphicon-phone"></span> Android</a></li>
+					<li><a href="../aboutus"><span class="glyphicon glyphicon-heart"></span> About Us</a></li>
+					<li><a href="../help"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
+					<li><a href="../settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+		<div class="container">
+			<div class="jumbotron">
+				<h1>Votes</h1>
+				<p>Voting ... </p>
+				
+			</div>
+		</div>
+		
+
+
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('customersCtrl', function($scope, $http) {
+
+			
+		});
+
+
+
+</script>
+
+</body>
+</html>
