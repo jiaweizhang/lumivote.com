@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Legislators</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+	</script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+	</script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+	</script>
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+	<script src="https://gist.githubusercontent.com/dave-newson/f6c5e9c2f3bc315e292c/raw/a1ae73f0c41b57f8177164cb78b1873df9055ec1/toggle-checkbox.js"></script>-->
+
+    <!--<link data-require="bootstrap@*" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" data-semver="3.3.1" data-require="bootstrap-css@*" />-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bs.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet" />
+    
+    <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.3.1" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.0-beta.2/angular.js" data-semver="1.4.0-beta.2" data-require="angular.js@*"></script>
+    
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.1.0/js/bootstrap-toggle.min.js"></script>
+    <!--<script src="https://gist.githubusercontent.com/dave-newson/f6c5e9c2f3bc315e292c/raw/a1ae73f0c41b57f8177164cb78b1873df9055ec1/toggle-checkbox.js"></script>-->
+    
+
+
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="customersCtrl"> 
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span> 
+					</button>
+					<a class="navbar-brand" href="#">Lumivote</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li><a href="../"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+						<li><a href="../timeline">Timeline</a></li>
+						<li><a href="../candidates">Candidates</a></li>
+						<li class="active"><a href="">Legislators</a></li>
+						<li><a href="../bills">Bills</a></li>
+						<li><a href="../votes">Votes</a></li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="">Dropdown
+								<span class="caret">
+
+								</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Something</a></li>
+								<li><a href="#">Else</a></li>
+								<li><a href="#">Another</a></li> 
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="https://play.google.com/store"><span class="glyphicon glyphicon-phone"></span> Android</a></li>
+						<li><a href="../aboutus"><span class="glyphicon glyphicon-heart"></span> About Us</a></li>
+						<li><a href="../help"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
+						<li><a href="../settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container">
+			<div class="jumbotron">
+				<h1>Legislators</h1>
+				<p>These are legislators of the ... </p>
+				
+			</div>
+		</div>
+		<div class="container">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="party">Party:</label>
+					<div class="col-sm-11">
+						<input type="checkbox" toggle-checkbox ng-model="partyFilter.republican" data-on="Republican" data-off="Republican" data-style="android" data-onstyle="danger" ng-init="partyFilter.republican=false"> 
+				
+						<input type="checkbox" toggle-checkbox ng-model="partyFilter.democrat" data-on="Democrat" data-off="Democrat" data-style="android" data-onstyle="primary" ng-init="partyFilter.democrat=false"> 
+						<style>
+  							.toggle.android { border-radius: 0px; }
+  							.toggle.android .toggle-handle { border-radius: 0px; }
+						</style>
+						<input type="checkbox" toggle-checkbox ng-model="partyFilter.independent" data-on="Independent" data-off="Independent" data-style="android" data-onstyle="success" ng-init="partyFilter.independent=false"> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="chamber">Chamber:</label>
+					<div class="col-sm-11">          
+						<input type="checkbox" toggle-checkbox ng-model="chamberFilter.house" data-on="House" data-off="House" data-style="android" data-onstyle="success" data-width="150" data-height="30" ng-init="chamberFilter.house=false"> 
+				
+						<input type="checkbox" toggle-checkbox ng-model="chamberFilter.senate" data-on="Senate" data-off="Senate" data-style="android" data-onstyle="danger" ng-init="chamberFilter.senate=false"> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="gender">Gender:</label>
+					<div class="col-sm-11">          
+						<input type="checkbox" toggle-checkbox ng-model="genderFilter.male" data-on="Male" data-off="Male" data-style="android" data-onstyle="danger" ng-init="genderFilter.male=false"> 
+				
+						<input type="checkbox" toggle-checkbox ng-model="genderFilter.female" data-on="Female" data-off="Female" data-style="android" data-onstyle="info" ng-init="genderFilter.female=false">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="state">State:</label>
+					<div class="col-sm-11">          
+						<input type="text" ng-model="stateFilter" placeholder="State Search" ng-init="stateFilter=''">
+						<span class="help-block">Searches both state name and state abbreviations.</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="keywords">Keywords:</label>
+					<div class="col-sm-11">          
+						<input type="text" ng-model="testFilter" placeholder="Search">
+						<span class="help-block">Searches all categories using keywords.</span>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="container">
+			<!--<form ng-submit="update()">
+				<input type="text" ng-model="stateInput" size="2" placeholder="State">
+				<input type="submit">
+			</form>-->
+			
+
+			<!-- working toggling
+			<label class="btn btn-default">
+				<input type="checkbox" toggle-checkbox class="form-control schedule" ng-change='toggleschedule()' ng-model="genderFilter.male" ng-init="genderFilter.male=false"> 
+				Male
+				<input type="checkbox" toggle-checkbox class="form-control schedule" ng-change='toggleschedule()' ng-model="genderFilter.female" ng-init="genderFilter.female=false"> 
+				Female
+			</label>-->
+
+
+		
+
+			
+
+			<!--Number of results: {{names.length}}
+			<br/>
+			PartyBools: {{partyFilter.republican}}::{{partyFilter.democrat}}::{{partyFilter.independent}}
+			<br/>
+			ChamberBools: {{chamberFilter.house}}::{{chamberFilter.senate}}
+			<br/>
+			GenderBools: {{genderFilter.male}}::{{genderFilter.female}}
+			<br/>
+			StateSearch: {{stateFilter}}-->
+
+			<!--<div class="col-md-12">
+				<input toggle-checkbox class="form-control schedule" ng-model="schedule" ng-change='toggleschedule()' type="checkbox" >
+			</div>
+			<div class="col-md-12">
+				<input ng-model="schedule" ng-change='toggleschedule()' type="checkbox" >
+			</div>
+			<div class="col-md-12">
+				<label>{{schedule}}</label>
+			</div>-->
+
+		</div>
+		<div class="container table-responsive">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Index</th>
+						<th>Image</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>State</th>
+						<th>State</th>
+						<th>Party</th>
+						<th>Chamber</th>
+						<th>Website</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in names | filter:testFilter |filter:theseParties | filter:theseChambers | filter:theseGenders |filter:theseStates ">
+						<td class="col-sm-0.7">{{ $index + 1 }}</td>
+						<th class="col-sm-2.0"><img height="150" ng-src="https://theunitedstates.io/images/congress/225x275/{{x.bioguide_id}}.jpg" alt="Legislator"></th>
+						<td class="col-sm-1">{{ x.first_name }}</td>
+						<td class="col-sm-2.3">{{ x.last_name }}</td>
+						<td class="col-sm-1">{{ x.state }}</td>
+						<td class="col-sm-2">{{ x.state_name }}</td>
+						<td class="col-sm-1">{{ x.party }}</td>
+						<td class="col-sm-1">{{ x.chamber }}</td>
+						<td class="col-sm-1"><a target="_blank" ng-href="{{ x.website }}">Link</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('customersCtrl', function($scope, $http) {
+
+			$http.get("https://congress.api.sunlightfoundation.com/legislators?per_page=all&apikey=33758a76204d4ac4aa866a5ef2e741a2")
+			.success(function(response) {
+				$scope.names = response.results;
+				$scope.countCall = response.count;
+				$scope.numTimes = Math.ceil($scope.countCall/50);
+			});
+
+			$scope.update = function() {
+				alert($scope.stateInput);
+				alert($scope.partyFilter.republican);
+				$http.get("https://congress.api.sunlightfoundation.com/legislators?per_page=all&state=" +$scope.stateInput +"&apikey=33758a76204d4ac4aa866a5ef2e741a2")
+				.success(function(response) { 
+					$scope.names = response.results;
+				});
+			};
+
+			$scope.theseParties = function(item) {
+				//alert($scope.partyFilter.republican);
+				// return true if any of the three parties match
+				if (($scope.partyFilter.republican==false) && ($scope.partyFilter.democrat==false) && ($scope.partyFilter.independent==false)) {
+					return true;
+				}
+				if (($scope.partyFilter.republican==true) && (item.party=='R')) {
+					return true;
+				}
+				if (($scope.partyFilter.democrat==true) && (item.party=='D')) {
+					return true;
+				}
+				if (($scope.partyFilter.independent==true) && (item.party=='I')) {
+					return true;
+				}
+				return false;
+			};
+
+			$scope.theseChambers = function(item) {
+				if (($scope.chamberFilter.house==false)&&($scope.chamberFilter.senate==false)) {
+					return true;
+				}
+				if (($scope.chamberFilter.house==true) && (item.chamber=='house')) {
+					return true;
+				}
+				if (($scope.chamberFilter.senate==true) && (item.chamber=='senate')) {
+					return true;
+				}
+				return false;
+			};
+
+			$scope.theseGenders = function(item) {
+				// if all are false, show
+				if (($scope.genderFilter.male==false)&&($scope.genderFilter.female==false)) {
+					return true;
+				}
+				if (($scope.genderFilter.male==true) && (item.gender=='M')) {
+					return true;
+				}
+				if (($scope.genderFilter.female==true) && (item.gender=='F')) {
+					return true;
+				}
+				return false;
+			}
+
+			$scope.theseStates = function(item) {
+				if ($scope.stateFilter.length==0) {
+					return true;
+				}
+				if (item.state.toLowerCase().indexOf(($scope.stateFilter).toLowerCase())==0) {
+					return true;
+				}
+				if (item.state_name.toLowerCase().indexOf(($scope.stateFilter).toLowerCase())==0) {
+					return true;
+				}
+				return false;
+			}
+
+			$scope.schedule = false;
+
+			$scope.toggleschedule = function(){
+				//console.log("toggle: " + $scope.schedule);
+			};
+			
+		});
+
+
+app.directive('toggleCheckbox', function($timeout) {
+
+        /**
+         * Directive
+         */
+         return {
+         	restrict: 'A',
+         	transclude: true,
+         	replace: false,
+         	require: 'ngModel',
+         	link: function ($scope, $element, $attr, ngModel) {
+
+                // update model from Element
+                var updateModelFromElement = function() {
+                    // If modified
+                    var checked = $element.prop('checked');
+                    if (checked != ngModel.$viewValue) {
+                        // Update ngModel
+                        ngModel.$setViewValue(checked);
+                        $scope.$apply();
+                    }
+                };
+
+                // Update input from Model
+                var updateElementFromModel = function(newValue) {
+                	$element.trigger('change');
+                };
+
+                // Observe: Element changes affect Model
+                $element.on('change', function() {
+                	updateModelFromElement();
+                });
+
+                $scope.$watch(function() {
+                	return ngModel.$viewValue;
+                }, function(newValue) { 
+                	updateElementFromModel(newValue);
+                }, true);
+
+                // Initialise BootstrapToggle
+                $element.bootstrapToggle();
+            }
+        };
+    });
+
+
+
+		/*angular.module('myApp', []).controller('customerCtrl', ['$scope', '$http', function ($scope, $http) {
+			$http.get("https://congress.api.sunlightfoundation.com/legislators?per_page=1&page=1&apikey=33758a76204d4ac4aa866a5ef2e741a2")
+			.success(function(response) {
+				$scope.names = response.results;
+				$scope.countCall = response.count;
+				$scope.numTimes = Math.ceil($scope.countCall/50);
+			});
+ 			$scope.getPeople = function() {
+ 			 	alert("bananas");
+    			$http.get("https://congress.api.sunlightfoundation.com/legislators?per_page=50&page=1&state=SC&apikey=33758a76204d4ac4aa866a5ef2e741a2");
+      			.success(function(data){
+        			return data.results;
+      			});
+  			}
+
+  		}]);*/
+</script>
+
+</body>
+</html>
