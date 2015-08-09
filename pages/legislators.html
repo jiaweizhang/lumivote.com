@@ -1,0 +1,96 @@
+<head>
+	<title>Legislators</title>
+</head>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1>Legislators</h1>
+		<p>Here are legislators of the <a href="https://en.wikipedia.org/wiki/114th_United_States_Congress" target="_blank">114th Congress</a></p>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<label>Party:</label>
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="partyFilter.republican" ng-init="partyFilter.republican=false">Republican</label> 
+			</div>
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="partyFilter.democrat" ng-init="partyFilter.democrat=false">Democrat</label> 
+			</div>
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="partyFilter.independent" ng-init="partyFilter.independent=false">Independent</label>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<label>Chamber:</label>
+			<div class="checkbox">        
+				<label><input type="checkbox" ng-model="chamberFilter.house" ng-init="chamberFilter.house=false">House</label>
+			</div>
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="chamberFilter.senate" ng-init="chamberFilter.senate=false">Senate</label>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<label>Gender:</label>
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="genderFilter.male" ng-init="genderFilter.male=false">Male</label>
+			</div>
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="genderFilter.female" ng-init="genderFilter.female=false">Female</label>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<label>State Search:</label>
+			<div>          
+				<input type="text" ng-model="stateFilter" placeholder="State Search" ng-init="stateFilter=''">
+			</div>
+			<br/>
+			<label>Keyword Search:</label>
+			<div>          
+				<input type="text" ng-model="testFilter" placeholder="Search">
+			</div>
+			<br/>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th class="col-sm-1">Index</th>
+					<th class="col-sm-1">Image</th>
+					<th class="col-sm-2">
+						<a href="" ng-click="order('first_name')">First Name</a><span class="sortorder" ng-show="predicate === 'first_name'" ng-class="{reverse:reverse}"></span> 
+					</th>
+					<th class="col-sm-2">
+						<a href="" ng-click="order('last_name')">Last Name</a><span class="sortorder" ng-show="predicate === 'last_name'" ng-class="{reverse:reverse}"></span> 
+					</th>
+					<th class="col-sm-1">
+						<a href="" ng-click="order('state')">State</a><span class="sortorder" ng-show="predicate === 'state'" ng-class="{reverse:reverse}"></span> 
+					</th>
+					<th class="col-sm-2">
+						<a href="" ng-click="order('state_name')">State</a><span class="sortorder" ng-show="predicate === 'state_name'" ng-class="{reverse:reverse}"></span> 
+					</th>
+					<th class="col-sm-1">
+						<a href="" ng-click="order('party')">Party</a><span class="sortorder" ng-show="predicate === 'party'" ng-class="{reverse:reverse}"></span> 
+					</th>
+					<th class="col-sm-1">
+						<a href="" ng-click="order('chamber')">Chamber</a><span class="sortorder" ng-show="predicate === 'chamber'" ng-class="{reverse:reverse}"></span> 
+					</th>
+					<th class="col-sm-1">Website</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="x in names | filter:testFilter |filter:theseParties | filter:theseChambers | filter:theseGenders |filter:theseStates | orderBy:predicate:reverse">
+					<td>{{ $index + 1 }}</td>
+					<td><img height="150" ng-src="https://theunitedstates.io/images/congress/225x275/{{x.bioguide_id}}.jpg" alt="Legislator"></td>
+					<td><span ng-bind-html='highlight(x.first_name, testFilter)'></span></td>
+					<td><span ng-bind-html='highlight(x.last_name, testFilter)'></span></td>
+					<td><span ng-bind-html='highlight(x.state, testFilter)'></span></td>
+					<td><span ng-bind-html='highlight(x.state_name, testFilter)'></span></td>
+					<td><span ng-bind-html='highlight(x.party, testFilter)'></span></td>
+					<td><span ng-bind-html='highlight(x.chamber, testFilter)'></span></td>
+					<td><a target="_blank" ng-href="{{ x.website }}">Link</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
