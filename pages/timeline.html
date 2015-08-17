@@ -32,8 +32,8 @@
 		</thead>
 		<tr ng-repeat="x in timeline | orderBy:predicate:reverse">
 			<td>{{ x.name}}</td>
-			<td>{{ x.date }}</td>
-			<td>{{ x.time }}</td>
+			<td ng-bind="findDate(x.date)"></td>
+			<td ng-bind="findTime(x.time)"></td>
 			<td>{{ x.party }}</td>
 			<td>{{ x.city }}</td>
 			<td>{{ x.state }}</td>

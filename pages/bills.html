@@ -14,10 +14,7 @@
 		<thead>
 			<tr>
 				<th>Title</th>
-				<th>Bill ID</th>
-				<th>Bill Type</th>
-				<th>Bill Number</th>
-				<th>Congress</th>
+				<th>Bill</th>
 				<th>Chamber</th>
 				<th>Introduced On</th>
 				<th>Website</th>
@@ -25,13 +22,10 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="x in bills">
-				<td class="col-sm-5.5">{{ x.official_title }}</td>
-				<td class="col-sm-1">{{ x.bill_id }}</td>
-				<th class="col-sm-1">{{ x.bill_type }}</th>
-				<td class="col-sm-1">{{ x.number }}</td>
-				<td class="col-sm-1">{{ x.congress }}</td>
-				<td class="col-sm-1">{{ x.chamber }}</td>
-				<td class="col-sm-1.5">{{ x.introduced_on }}</td>
+				<td class="col-sm-6">{{ findTitle(x) }}</td>
+				<td class="col-sm-2">{{ findBillType(x.bill_type) +" "+x.number }}</th>
+				<td class="col-sm-1">{{ findChamber(x.chamber) }}</td>
+				<td class="col-sm-2">{{ findDate(x.introduced_on) }}</td>
 				<td class="col-sm-1"><a target="_blank" ng-href="{{ x.urls.congress }}">Link</a></td>
 			</tr>
 		</tbody>

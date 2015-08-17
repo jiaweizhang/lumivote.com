@@ -64,7 +64,7 @@
 						<a href="" ng-click="order('last_name')">Last Name</a><span class="sortorder" ng-show="predicate === 'last_name'" ng-class="{reverse:reverse}"></span> 
 					</th>
 					<th class="col-sm-1">
-						<a href="" ng-click="order('state')">State</a><span class="sortorder" ng-show="predicate === 'state'" ng-class="{reverse:reverse}"></span> 
+						<a href="" ng-click="order('state')">State (Abbr.)</a><span class="sortorder" ng-show="predicate === 'state'" ng-class="{reverse:reverse}"></span> 
 					</th>
 					<th class="col-sm-2">
 						<a href="" ng-click="order('state_name')">State</a><span class="sortorder" ng-show="predicate === 'state_name'" ng-class="{reverse:reverse}"></span> 
@@ -87,7 +87,7 @@
 					<td><span ng-bind-html='highlight(x.state, testFilter)'></span></td>
 					<td><span ng-bind-html='highlight(x.state_name, testFilter)'></span></td>
 					<td><span ng-bind-html='highlight(x.party, testFilter)'></span></td>
-					<td><span ng-bind-html='highlight(x.chamber, testFilter)'></span></td>
+					<td><span ng-bind-html='highlight(findChamber(x.chamber), testFilter)'></span></td>
 					<td><a target="_blank" ng-href="{{ x.website }}">Link</a></td>
 				</tr>
 			</tbody>

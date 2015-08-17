@@ -59,6 +59,19 @@ myApp.controller('contactController', function($scope) {
 
 myApp.controller('timelineController', function($scope, $http) {
 
+	$scope.findDate = function(date) {
+		var newDate = new Date(date);
+		var d = newDate.toDateString().split(" ");
+		return d[0]+", "+d[1]+" "+d[2]+", '"+d[3].substr(2);
+	}
+
+	$scope.findTime = function(time) {
+		if (time=="00:00:00") {
+			return " ";
+		}
+		return time;
+	}
+
 	$scope.predicate = 'date';
 	$scope.reverse = false;
 	$scope.order = function(predicate) {
@@ -151,6 +164,15 @@ myApp.controller('legislatorController', function($scope, $http, $sce) {
 		return false;
 	}		
 
+	$scope.findChamber = function(chamber) {
+		if (chamber=="house") {
+			return "House";
+		}
+		else {
+			return "Senate";
+		}
+	}
+
 	$scope.predicate = 'last_name';
 	$scope.reverse = false;
 	$scope.order = function(predicate) {
@@ -169,16 +191,69 @@ myApp.controller('legislatorController', function($scope, $http, $sce) {
 
 myApp.controller('billsController', function($scope, $http) {
 	$scope.pageNumber = 1;
-	$http.get("https://congress.api.sunlightfoundation.com/bills?order=history.enacted_at&per_page=20&page=1&apikey=33758a76204d4ac4aa866a5ef2e741a2")
+	$http.get("https://congress.api.sunlightfoundation.com/bills?order=history.enacted_at&per_page=50&page=1&apikey=33758a76204d4ac4aa866a5ef2e741a2")
 	.success(function(response) {
 		$scope.bills = response.results;
 	});
 
+	$scope.findTitle = function(bill) {
+		if (bill.popular_title != null) {
+			return bill.popular_title; 
+		}
+		else if (bill.short_title != null) {
+			return bill.short_title;
+		}
+		return bill.official_title;
+	}
 
+	$scope.findBillType = function(billType) {
+		if (billType=="hr") {
+			return "H. R.";
+		} 
+		else if (billType=="hres") {
+			return "H. Res.";
+		}
+		else if (billType=="hjres") {
+			return "H. J. Res.";
+		}
+		else if (billType=="hconres") {
+			return "H. Con. Res.";
+		}
+		else if (billType=="s") {
+			return "S.";
+		}
+		else if (billType=="sres") {
+			return "S. Res.";
+		}
+		else if (billType=="sjres") {
+			return "S. J. Res.";
+		}
+		else if (billType=="sconres") {
+			return "S. Con. Res";
+		}
+		else {
+			return billType;
+		}
+	}
+
+	$scope.findChamber = function(chamber) {
+		if (chamber=="house") {
+			return "House";
+		}
+		else {
+			return "Senate";
+		}
+	}
+
+	$scope.findDate = function(date) {
+		var newDate = new Date(date);
+		var d = newDate.toDateString().split(" ");
+		return d[0]+", "+d[1]+" "+d[2]+", '"+d[3].substr(2);
+	}
 
 	$scope.addFifty = function() {
 		$scope.pageNumber = $scope.pageNumber + 1;
-		$http.get("https://congress.api.sunlightfoundation.com/bills?order=history.enacted_at&per_page=20&page="+$scope.pageNumber+"&apikey=33758a76204d4ac4aa866a5ef2e741a2")
+		$http.get("https://congress.api.sunlightfoundation.com/bills?order=history.enacted_at&per_page=50&page="+$scope.pageNumber+"&apikey=33758a76204d4ac4aa866a5ef2e741a2")
 		.success(function(response) {
 			$scope.newBills = response.results;
 			$scope.bills = $scope.bills.concat($scope.newBills);
@@ -189,16 +264,37 @@ myApp.controller('billsController', function($scope, $http) {
 
 myApp.controller('votesController', function($scope, $http) {
 	$scope.pageNumber = 1;
-	$http.get("https://congress.api.sunlightfoundation.com/votes?fields=bill,voted_at,vote_type,result,url,breakdown.total&order=voted_at&per_page=20&page=1&apikey=33758a76204d4ac4aa866a5ef2e741a2")
+	$http.get("https://congress.api.sunlightfoundation.com/votes?fields=bill,voted_at,vote_type,result,url,breakdown.total&order=voted_at&per_page=50&page=1&apikey=33758a76204d4ac4aa866a5ef2e741a2")
 	.success(function(response) {
 		$scope.votes = response.results;
 	});
 
+	$scope.findTitle = function(vote) {
+		if (vote.bill==null) {
+			return "No Title Found."
+		}
+		if (vote.bill.popular_title != null) {
+			return vote.bill.popular_title; 
+		}
+		else if (vote.bill.short_title != null) {
+			return vote.bill.short_title;
+		}
+		return vote.bill.official_title;
+	}
 
+	$scope.findDate = function(date) {
+		var newDate = new Date(date);
+		var d = newDate.toDateString().split(" ");
+		return d[0]+", "+d[1]+" "+d[2]+", '"+d[3].substr(2);
+	}
+
+	$scope.findVoteType = function(voteType) {
+		return voteType.charAt(0).toUpperCase() + voteType.slice(1);
+	}
 
 	$scope.addFifty = function() {
 		$scope.pageNumber = $scope.pageNumber + 1;
-		$http.get("https://congress.api.sunlightfoundation.com/votes?fields=bill,voted_at,vote_type,result,url,breakdown.total&order=voted_at&per_page=20&page="+$scope.pageNumber+"&apikey=33758a76204d4ac4aa866a5ef2e741a2")
+		$http.get("https://congress.api.sunlightfoundation.com/votes?fields=bill,voted_at,vote_type,result,url,breakdown.total&order=voted_at&per_page=50&page="+$scope.pageNumber+"&apikey=33758a76204d4ac4aa866a5ef2e741a2")
 		.success(function(response) {
 			$scope.newVotes = response.results;
 			$scope.votes = $scope.votes.concat($scope.newVotes);
