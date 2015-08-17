@@ -80,7 +80,7 @@ myApp.controller('timelineController', function($scope, $http) {
 	};
 
 	$scope.init = function() {
-		$http.get("/app/timeline/api/events").success(function(response) {
+		$http.get("http://lumivote.com/app/timeline/api/events").success(function(response) {
 			$scope.timeline = response.timeline;
 		})
 	}
