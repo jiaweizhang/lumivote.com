@@ -9,3 +9,71 @@
 	</div>
 	
 </div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<h2 class="text-center">Democrats</h2>
+			<table class="table">
+				<tbody>
+					<tr ng-repeat="x in democrats">
+						<td>
+							<h3 ng-bind="findName(x)"></h3>
+							<div>
+								Born <span ng-bind="findDate(x.birthdate)"></span>
+							</div>
+							<div>
+								<span ng-bind="x.occupation"></span>
+							</div>
+							<div>
+								<a target="_blank" ng-href="{{x.url}}">Personal Website</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm-4">
+			<h2 class="text-center">Independents</h2>
+			<table class="table">
+				<tbody>
+					<tr ng-repeat="x in independents">
+						<td>
+							<h3 ng-bind="findName(x)"></h3>
+							<div>
+								Born <span ng-bind="findDate(x.birthdate)"></span>
+							</div>
+							<div>
+								<span ng-bind="x.occupation"></span>
+							</div>
+							<div>
+								<a target="_blank" ng-href="{{x.url}}">Personal Website</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm-4">
+			<h2 class="text-center">Republicans</h2>
+			<table class="table">
+				<tbody>
+					<tr ng-repeat="x in republicans">
+						<td>
+							<h3 ng-bind="findName(x)"></h3>
+							<div>
+								Born <span ng-bind="findDate(x.birthdate)"></span>
+							</div>
+							<div>
+								<span ng-bind="x.occupation"></span>
+							</div>
+							<div>
+								<a target="_blank" ng-href="{{x.url}}">Personal Website</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -80,7 +80,7 @@ myApp.controller('timelineController', function($scope, $http) {
 	};
 
 	$scope.init = function() {
-		$http.get("http://lumivote.com/app/timeline/api/events").success(function(response) {
+		$http.get("/app/timeline/api/events").success(function(response) {
 			$scope.timeline = response.timeline;
 		})
 	}
@@ -88,8 +88,35 @@ myApp.controller('timelineController', function($scope, $http) {
 	$scope.init();
 });
 
-myApp.controller('candidateController', function($scope) {
-	$scope.message = 'Contact us! JK. This is just a demo.';
+myApp.controller('candidateController', function($scope, $http) {
+
+	$scope.findName = function(candidate) {
+		return candidate.fName+" "+candidate.mName+" "+candidate.lName;
+	}
+
+	$scope.findDate = function(date) {
+		if (date=="0000-00-00") {
+			return " ";
+		}
+		var newDate = new Date(date);
+		var d = newDate.toDateString().split(" ");
+		return d[0]+", "+d[1]+" "+d[2]+", '"+d[3].substr(2);
+	}
+
+	$scope.init = function() {
+		$http.get("/app/candidates/api/candidates?party=democratic").success(function(response) {
+			$scope.democrats = response.candidates;
+		})
+		$http.get("/app/candidates/api/candidates?party=republican").success(function(response) {
+			$scope.republicans = response.candidates;
+		})
+		$http.get("/app/candidates/api/candidates?party=independent").success(function(response) {
+			$scope.independents = response.candidates;
+		})
+	}
+
+
+	$scope.init();
 });
 
 myApp.controller('legislatorController', function($scope, $http, $sce) {
