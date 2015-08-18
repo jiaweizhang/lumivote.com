@@ -1,0 +1,41 @@
+[05-Aug-2015 05:20:26 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'127.0.0.1' (using password: NO)' in /home/lumivote/public_html/app/timeline/api/api.php:19
+Stack trace:
+#0 /home/lumivote/public_html/app/timeline/api/api.php(19): PDO->__construct('mysql:host=127....', 'root', '')
+#1 {main}
+  thrown in /home/lumivote/public_html/app/timeline/api/api.php on line 19
+[05-Aug-2015 05:24:30 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'lumivote_dev'@'127.0.0.1' (using password: YES)' in /home/lumivote/public_html/app/timeline/api/api.php:19
+Stack trace:
+#0 /home/lumivote/public_html/app/timeline/api/api.php(19): PDO->__construct('mysql:host=127....', 'lumivote_dev', 'votenow91')
+#1 {main}
+  thrown in /home/lumivote/public_html/app/timeline/api/api.php on line 19
+[05-Aug-2015 05:25:09 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'lumivote_dev'@'127.0.0.1' (using password: YES)' in /home/lumivote/public_html/app/timeline/api/api.php:19
+Stack trace:
+#0 /home/lumivote/public_html/app/timeline/api/api.php(19): PDO->__construct('mysql:host=127....', 'lumivote_dev', 'votenow91')
+#1 {main}
+  thrown in /home/lumivote/public_html/app/timeline/api/api.php on line 19
+[18-Aug-2015 02:23:04 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:23:07 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:23:17 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:23:23 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:23:29 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:23:50 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:24:10 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:24:12 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:24:17 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:24:23 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:24:38 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 50
+[18-Aug-2015 02:25:43 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 51
+[18-Aug-2015 02:25:45 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 51
+[18-Aug-2015 02:25:56 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 51
+[18-Aug-2015 02:26:06 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 51
+[18-Aug-2015 02:26:15 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 51
+[18-Aug-2015 02:26:19 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 51
+[18-Aug-2015 02:27:13 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting '(' in /home/lumivote/public_html/app/candidates/api/api.php on line 51
+[18-Aug-2015 02:27:20 UTC] PHP Parse error:  syntax error, unexpected T_ELSE in /home/lumivote/public_html/app/candidates/api/api.php on line 46
+[18-Aug-2015 02:27:26 UTC] PHP Parse error:  syntax error, unexpected T_ELSE in /home/lumivote/public_html/app/candidates/api/api.php on line 46
+[18-Aug-2015 02:27:26 UTC] PHP Parse error:  syntax error, unexpected T_ELSE in /home/lumivote/public_html/app/candidates/api/api.php on line 46
+[18-Aug-2015 02:27:28 UTC] PHP Parse error:  syntax error, unexpected T_ELSE in /home/lumivote/public_html/app/candidates/api/api.php on line 46
+[18-Aug-2015 02:27:43 UTC] PHP Parse error:  syntax error, unexpected T_ELSE in /home/lumivote/public_html/app/candidates/api/api.php on line 45
+[18-Aug-2015 02:27:45 UTC] PHP Parse error:  syntax error, unexpected T_ELSE in /home/lumivote/public_html/app/candidates/api/api.php on line 45
+[18-Aug-2015 02:28:00 UTC] PHP Parse error:  syntax error, unexpected T_ELSE in /home/lumivote/public_html/app/candidates/api/api.php on line 45
+[18-Aug-2015 02:28:33 UTC] PHP Parse error:  syntax error, unexpected T_ECHO, expecting T_VARIABLE or '$' in /home/lumivote/public_html/app/candidates/api/api.php on line 29

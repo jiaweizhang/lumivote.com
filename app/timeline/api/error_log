@@ -1,0 +1,15 @@
+[05-Aug-2015 05:20:26 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'root'@'127.0.0.1' (using password: NO)' in /home/lumivote/public_html/app/timeline/api/api.php:19
+Stack trace:
+#0 /home/lumivote/public_html/app/timeline/api/api.php(19): PDO->__construct('mysql:host=127....', 'root', '')
+#1 {main}
+  thrown in /home/lumivote/public_html/app/timeline/api/api.php on line 19
+[05-Aug-2015 05:24:30 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'lumivote_dev'@'127.0.0.1' (using password: YES)' in /home/lumivote/public_html/app/timeline/api/api.php:19
+Stack trace:
+#0 /home/lumivote/public_html/app/timeline/api/api.php(19): PDO->__construct('mysql:host=127....', 'lumivote_dev', 'votenow91')
+#1 {main}
+  thrown in /home/lumivote/public_html/app/timeline/api/api.php on line 19
+[05-Aug-2015 05:25:09 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'lumivote_dev'@'127.0.0.1' (using password: YES)' in /home/lumivote/public_html/app/timeline/api/api.php:19
+Stack trace:
+#0 /home/lumivote/public_html/app/timeline/api/api.php(19): PDO->__construct('mysql:host=127....', 'lumivote_dev', 'votenow91')
+#1 {main}
+  thrown in /home/lumivote/public_html/app/timeline/api/api.php on line 19

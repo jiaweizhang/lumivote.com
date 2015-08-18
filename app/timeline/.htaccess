@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^([a-z0-9_\-]+)/?$ index.php?main=$1 [NC,L] 
+RewriteRule ^([a-z0-9_\-]+)/([a-z0-9_\-]+)/?$ index.php?main=$1&sub=$2 [NC,L]
+
+DirectoryIndex home.php
+
+Options All -Indexes
+
+AuthName "Restricted Area" 
+AuthType Basic 
+AuthUserFile /home/lumivote/.htpasswd 
+AuthGroupFile /dev/null 
+<Files home.php>
+require valid-user
+</Files>
+ 
