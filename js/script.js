@@ -80,7 +80,7 @@ myApp.controller('timelineController', function($scope, $http) {
 	};
 
 	$scope.init = function() {
-		$http.get("http://lumivote.com/app/timeline/api/events").success(function(response) {
+		$http.get("http://lumivote.com/api/events").success(function(response) {
 			$scope.timeline = response.timeline;
 		})
 	}
@@ -104,13 +104,13 @@ myApp.controller('candidateController', function($scope, $http) {
 	}
 
 	$scope.init = function() {
-		$http.get("http://lumivote.com/app/candidates/api/candidates?party=democratic").success(function(response) {
+		$http.get("http://lumivote.com/api/candidates?party=democratic").success(function(response) {
 			$scope.democrats = response.candidates;
 		})
-		$http.get("http://lumivote.com/app/candidates/api/candidates?party=republican").success(function(response) {
+		$http.get("http://lumivote.com/api/candidates?party=republican").success(function(response) {
 			$scope.republicans = response.candidates;
 		})
-		$http.get("http://lumivote.com/app/candidates/api/candidates?party=independent").success(function(response) {
+		$http.get("http://lumivote.com/api/candidates?party=independent").success(function(response) {
 			$scope.independents = response.candidates;
 		})
 	}
