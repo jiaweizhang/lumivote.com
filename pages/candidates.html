@@ -2,6 +2,26 @@
 	<title>Presidential Candidates</title>
 </head>
 
+<script type="text/ng-template" id="candidateContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{findName(candidate)}}</h3>
+        </div>
+        <div class="modal-body">
+        <div> 
+        	<h4>Background</h4>
+        	<p>Birthdate: {{candidate.birthdate}}</p>
+        	<p>Age: </p>
+        	<p>Occupation: {{candidate.occupation}}</p>
+        	<p>Spouse Name: {{candidate.spouseFName}}</p>
+      		
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+
 <div class="container jumbotron">
 		<h1>Candidates</h1>
 		<p>2016 Presidential Election Candidates.</p>	
@@ -15,15 +35,19 @@
 				<tbody>
 					<tr ng-repeat="x in democrats">
 						<td>
-							<h3 ng-bind="findName(x)"></h3>
-							<div>
-								Born <span ng-bind="findDate(x.birthdate)"></span>
-							</div>
-							<div>
-								<span ng-bind="x.occupation"></span>
-							</div>
-							<div>
-								<a target="_blank" ng-href="{{x.url}}">Personal Website</a>
+							<div class="row">
+								<div class="col-sm-4">
+									<img ng-src="{{candidate.image}}" alt="Description"/>
+								</div>
+								<div class="col-sm-4">
+									<h3><a href="" ng-click="open(x)">{{findName(x)}}></a></h3>
+									<div>
+										<span ng-bind="x.occupation"></span>
+									</div>
+									<div>
+										<a target="_blank" ng-href="{{x.url}}">Website</a>
+									</div>
+								</div>
 							</div>
 						</td>
 					</tr>

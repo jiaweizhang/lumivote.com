@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngSanitize','ui.bootstrap']);
 
 myApp.config(function($routeProvider) {
 	$routeProvider
@@ -88,7 +88,28 @@ myApp.controller('timelineController', function($scope, $http) {
 	$scope.init();
 });
 
-myApp.controller('candidateController', function($scope, $http) {
+myApp.controller('candidateController', function($scope, $http, $modal, $log) {
+
+	$scope.open = function (candidate) {
+
+		var modalInstance = $modal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'candidateContent.html',
+			controller: 'candidateModalController',
+			size: 'lg',
+			resolve: {
+				candidate: function () {
+					return candidate;
+				}
+			}
+		});
+
+		modalInstance.result.then(function (selectedItem) {
+			$scope.selected = selectedItem;
+		}, function () {
+		});
+	};
+
 
 	$scope.findName = function(candidate) {
 		return candidate.fName+" "+candidate.mName+" "+candidate.lName;
@@ -117,6 +138,31 @@ myApp.controller('candidateController', function($scope, $http) {
 
 
 	$scope.init();
+});
+
+myApp.controller('candidateModalController', function ($scope, $modalInstance, candidate) {
+	$scope.candidate = candidate;
+
+	$scope.findName = function(candidate) {
+		return candidate.fName+" "+candidate.mName+" "+candidate.lName;
+	}
+
+	$scope.findDate = function(date) {
+		if (date=="0000-00-00") {
+			return " ";
+		}
+		var newDate = new Date(date);
+		var d = newDate.toDateString().split(" ");
+		return d[0]+", "+d[1]+" "+d[2]+", '"+d[3].substr(2);
+	}
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
 });
 
 myApp.controller('legislatorController', function($scope, $http, $sce) {
