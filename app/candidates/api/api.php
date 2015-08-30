@@ -93,7 +93,8 @@ else if ($method == 'POST') {
   $url = $params['url'];
   $facebook = $params['facebook'];
   $bioGuide = $params['bioGuide'];
-  $sql = 'INSERT INTO candidates (fName, nickName, mName, lName, party, occupation, birthdate, spouseFName, spouseMName, spouseLName, bio, twitter, url, facebook, bioGuide) VALUES (:fName, :nickName, :mName, :lName, :party, :occupation, :birthdate, :spouseFName, :spouseMName, :spouseLName, :bio, :twitter, :url,:facebook,:bioGuide)';
+  $image = $params['image'];
+  $sql = 'INSERT INTO candidates (fName, nickName, mName, lName, party, occupation, birthdate, spouseFName, spouseMName, spouseLName, bio, twitter, url, facebook, bioGuide, image) VALUES (:fName, :nickName, :mName, :lName, :party, :occupation, :birthdate, :spouseFName, :spouseMName, :spouseLName, :bio, :twitter, :url,:facebook,:bioGuide, :image)';
 
   $stmt = $dbh->prepare($sql);
 
@@ -112,6 +113,7 @@ else if ($method == 'POST') {
   $stmt->bindParam(':url', $url);
   $stmt->bindParam(':facebook', $facebook);
   $stmt->bindParam(':bioGuide', $bioGuide);
+  $stmt->bindParam(':image', $image);
 
   $stmt->execute();
   echo "POST executed.";
@@ -153,8 +155,9 @@ else if ($method == 'PUT') {
   $url = $params['url'];
   $facebook = $params['facebook'];
   $bioGuide = $params['bioGuide'];
+  $image = $params['image'];
 
-  $sql = 'UPDATE candidates SET fName=:fName, nickName=:nickName, mName=:mName, lName=:lName, party=:party, occupation=:occupation, birthdate=:birthdate, spouseFName=:spouseFName, spouseMName=:spouseMName, spouseLName=:spouseLName, bio=:bio, twitter=:twitter, url=:url,facebook=:facebook,bioGuide=:bioGuide WHERE ID=:ID';
+  $sql = 'UPDATE candidates SET fName=:fName, nickName=:nickName, mName=:mName, lName=:lName, party=:party, occupation=:occupation, birthdate=:birthdate, spouseFName=:spouseFName, spouseMName=:spouseMName, spouseLName=:spouseLName, bio=:bio, twitter=:twitter, url=:url,facebook=:facebook,bioGuide=:bioGuide,image=:image WHERE ID=:ID';
   $stmt = $dbh->prepare($sql);
   $stmt->bindParam(":ID", $ID);
   $stmt->bindParam(':fName', $fName);
@@ -172,6 +175,7 @@ else if ($method == 'PUT') {
   $stmt->bindParam(':url', $url);
   $stmt->bindParam(':facebook', $facebook);
   $stmt->bindParam(':bioGuide', $bioGuide);
+  $stmt->bindParam(':image', $image);
 
   $stmt->execute();
 

@@ -83,6 +83,10 @@
 						<input type="text" class="form-control" ng-model="candidate.bioGuide">
 					</div>
 					<div class="form-group">
+						<label>image</label>
+						<input type="text" class="form-control" ng-model="candidate.image">
+					</div>
+					<div class="form-group">
 						<button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
 					</div>
 				</form>
@@ -164,6 +168,10 @@
 						<input type="text" class="form-control" ng-model="candidate.bioGuide" ng-init="candidate.bioGuide=''">
 					</div>
 					<div class="form-group">
+						<label>image</label>
+						<input type="text" class="form-control" ng-model="candidate.image" ng-init="candidate.image=''">
+					</div>
+					<div class="form-group">
 						<button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
 					</div>
 				</form>
@@ -194,6 +202,7 @@
 					<th>url</th>
 					<th>facebook</th>
 					<th>bioGuide</th>
+					<th>image</th>
 				</tr>
 				</thead>
 				<tr ng-repeat="x in candidates">
@@ -212,6 +221,7 @@
 					<td>{{ x.url }}</td>
 					<td>{{ x.facebook }}</td>
 					<td>{{ x.bioGuide }}</td>
+					<td>{{ x.image }}</td>
 					<td>
 						<button type="button" class="btn btn-info" ng-click="edit(x.ID,x)">Edit</button>
 					</td>
