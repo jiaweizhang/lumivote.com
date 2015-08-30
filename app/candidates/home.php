@@ -28,6 +28,10 @@
 						<input type="text" class="form-control" ng-model="candidate.fName">
 					</div>
 					<div class="form-group">
+						<label>nickName</label>
+						<input type="text" class="form-control" ng-model="candidate.nickName">
+					</div>
+					<div class="form-group">
 						<label>mName</label>
 						<input type="text" class="form-control" ng-model="candidate.mName">
 					</div>
@@ -72,6 +76,14 @@
 						<input type="text" class="form-control" ng-model="candidate.url">
 					</div>
 					<div class="form-group">
+						<label>facebook</label>
+						<input type="text" class="form-control" ng-model="candidate.facebook">
+					</div>
+					<div class="form-group">
+						<label>bioGuide</label>
+						<input type="text" class="form-control" ng-model="candidate.bioGuide">
+					</div>
+					<div class="form-group">
 						<button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
 					</div>
 				</form>
@@ -96,6 +108,10 @@
 					<div class="form-group">
 						<label>fName</label>
 						<input type="text" class="form-control" ng-model="candidate.fName" ng-init="candidate.fName=''">
+					</div>
+					<div class="form-group">
+						<label>nickName</label>
+						<input type="text" class="form-control" ng-model="candidate.nickName" ng-init="candidate.nickName=''">
 					</div>
 					<div class="form-group">
 						<label>mName</label>
@@ -142,6 +158,14 @@
 						<input type="text" class="form-control" ng-model="candidate.url" ng-init="candidate.url=''">
 					</div>
 					<div class="form-group">
+						<label>facebook</label>
+						<input type="text" class="form-control" ng-model="candidate.facebook" ng-init="candidate.facebook=''">
+					</div>
+					<div class="form-group">
+						<label>bioGuide</label>
+						<input type="text" class="form-control" ng-model="candidate.bioGuide" ng-init="candidate.bioGuide=''">
+					</div>
+					<div class="form-group">
 						<button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
 					</div>
 				</form>
@@ -158,6 +182,7 @@
 			<thead>
 				<tr>
 					<th>fName</th>
+					<th>nickName</th>
 					<th>mName</th>
 					<th>lName</th>
 					<th>party</th>
@@ -169,10 +194,13 @@
 					<th>bio</th>
 					<th>twitter</th>
 					<th>url</th>
+					<th>facebook</th>
+					<th>bioGuide</th>
 				</tr>
 				</thead>
 				<tr ng-repeat="x in candidates">
 					<td>{{ x.fName}}</td>
+					<td>{{ x.nickName}}</td>
 					<td>{{ x.mName }}</td>
 					<td>{{ x.lName }}</td>
 					<td>{{ x.party }}</td>
@@ -184,6 +212,8 @@
 					<td>{{ x.bio }}</td>
 					<td>{{ x.twitter }}</td>
 					<td>{{ x.url }}</td>
+					<td>{{ x.facebook }}</td>
+					<td>{{ x.bioGuide }}</td>
 					<td>
 						<button type="button" class="btn btn-info" ng-click="edit(x.ID,x)">Edit</button>
 					</td>
