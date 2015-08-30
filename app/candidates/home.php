@@ -13,7 +13,7 @@
 	<script type="text/ng-template" id="candidateModal.html">
 			<div class="modal-header">
 				<h3 class="modal-title">
-					Edit Event 
+					Edit Candidate 
 					<div class="btn-group pull-right">
 						<button class="btn btn-primary" ng-click="ok()">Ok</button>
 						<button class="btn btn-primary" ng-click="cancel()">Cancel</button>
@@ -21,7 +21,6 @@
 				</h3>
 			</div>
 			<div class="modal-body">
-			<h2>Add Event</h2>
 				<form role="form">
 					<div class="form-group">
 						<label>fName</label>
@@ -87,7 +86,6 @@
 						<button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
 					</div>
 				</form>
-			</div>
 			<div class="modal-footer">
 				<div class="btn-group pull-right">
 						<button class="btn btn-primary" ng-click="ok()">Ok</button>
