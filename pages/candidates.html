@@ -4,7 +4,7 @@
 
 <script type="text/ng-template" id="candidateContent.html">
         <div class="modal-header">
-            <h3 class="modal-title">{{findName(candidate)}}</h3>
+            <h3 class="modal-title">{{findName(candidate)}}<button class="btn btn-info pull-right" type="button" ng-click="cancel()">Close</button></h3>
         </div>
         <div class="modal-body">
         <div> 
@@ -15,10 +15,9 @@
         	<p>Spouse Name: {{candidate.spouseFName}}</p>
       		
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </div>
+        <!--<div class="modal-footer">
+            <button class="btn btn-info pull-right" type="button" ng-click="cancel()">Close</button>
+        </div>-->
     </script>
 
 
@@ -37,15 +36,17 @@
 						<td>
 							<div class="row">
 								<div class="col-sm-4">
-									<img ng-src="{{candidate.image}}" alt="Description"/>
+									<a href="" ng-click="open(x)">
+										<img ng-src="{{x.image}}" width="100%" alt="Description"/>
+									</a>
 								</div>
-								<div class="col-sm-4">
-									<h3><a href="" ng-click="open(x)">{{findName(x)}}></a></h3>
+								<div class="col-sm-8">
+									<p style="font-size:150%"><a href="" ng-click="open(x)">{{findName(x)}}</a></p>
 									<div>
 										<span ng-bind="x.occupation"></span>
 									</div>
 									<div>
-										<a target="_blank" ng-href="{{x.url}}">Website</a>
+										<a target="_blank" ng-href="{{x.url}}">Election Website</a>
 									</div>
 								</div>
 							</div>
@@ -60,15 +61,21 @@
 				<tbody>
 					<tr ng-repeat="x in independents">
 						<td>
-							<h3 ng-bind="findName(x)"></h3>
-							<div>
-								Born <span ng-bind="findDate(x.birthdate)"></span>
-							</div>
-							<div>
-								<span ng-bind="x.occupation"></span>
-							</div>
-							<div>
-								<a target="_blank" ng-href="{{x.url}}">Personal Website</a>
+							<div class="row">
+								<div class="col-sm-4">
+									<a href="" ng-click="open(x)">
+										<img ng-src="{{x.image}}" width="100%" alt="Description"/>
+									</a>
+								</div>
+								<div class="col-sm-8">
+									<p style="font-size:150%"><a href="" ng-click="open(x)">{{findName(x)}}</a></p>
+									<div>
+										<span ng-bind="x.occupation"></span>
+									</div>
+									<div>
+										<a target="_blank" ng-href="{{x.url}}">Election Website</a>
+									</div>
+								</div>
 							</div>
 						</td>
 					</tr>
@@ -81,15 +88,21 @@
 				<tbody>
 					<tr ng-repeat="x in republicans">
 						<td>
-							<h3 ng-bind="findName(x)"></h3>
-							<div>
-								Born <span ng-bind="findDate(x.birthdate)"></span>
-							</div>
-							<div>
-								<span ng-bind="x.occupation"></span>
-							</div>
-							<div>
-								<a target="_blank" ng-href="{{x.url}}">Personal Website</a>
+							<div class="row">
+								<div class="col-sm-4">
+									<a href="" ng-click="open(x)">
+										<img ng-src="{{x.image}}" width="100%" alt="Description"/>
+									</a>
+								</div>
+								<div class="col-sm-8">
+									<p style="font-size:150%"><a href="" ng-click="open(x)">{{findName(x)}}</a></p>
+									<div>
+										<span ng-bind="x.occupation"></span>
+									</div>
+									<div>
+										<a target="_blank" ng-href="{{x.url}}">Election Website</a>
+									</div>
+								</div>
 							</div>
 						</td>
 					</tr>

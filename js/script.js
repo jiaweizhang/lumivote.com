@@ -112,7 +112,10 @@ myApp.controller('candidateController', function($scope, $http, $modal, $log) {
 
 
 	$scope.findName = function(candidate) {
-		return candidate.fName+" "+candidate.mName+" "+candidate.lName;
+		if (candidate.nickName.length != 0) {
+			return candidate.nickName +" "+ candidate.lName;
+		}
+		return candidate.fName+" " +candidate.lName;
 	}
 
 	$scope.findDate = function(date) {
