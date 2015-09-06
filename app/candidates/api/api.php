@@ -1,4 +1,5 @@
 <?php
+require_once '../../../include/Config.php';
 $method = $_SERVER['REQUEST_METHOD'];
 $url = $_SERVER['REQUEST_URI'];
 $paths = array_filter( explode("/", $url));
@@ -9,14 +10,8 @@ array_shift($paths);
 
 
 // set up the connection variables
-$db_name  = '';
-$hostname = '';
-$username = '';
-$password = '';
-
 // connect to the database
-$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-
+$dbh = new PDO(DB_UNIX, DB_USERNAME, DB_PASSWORD);
 if ($method == 'GET') {  
  $queryString = $_SERVER['QUERY_STRING'];
  parse_str($queryString, $outputQuery);

@@ -1,4 +1,0 @@
-<?php
-//phpversion();
-phpinfo();
-?>

@@ -12,26 +12,20 @@ handlers:
 - url: /js
   static_dir: js
 
-- url: /app/candidates/js
-  static_dir: app/candidates/js
-
-- url: /app/timeline/js
-  static_dir: app/timeline/js
-
 - url: /css
   static_dir: css
 
 - url: /pages
   static_dir: pages
 
-- url: /api.*
+- url: /api/.*
   script: api/api.php
 
 - url: /app/candidates
   script: app/candidates/home.php
 
 - url: /app/timeline
-  script: app/timeline/home.php
+  script: app/timeline/home.html
 
 - url: /app/candidates/api
   script: app/candidates/api/api.php

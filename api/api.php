@@ -1,4 +1,5 @@
 <?php
+require_once '../include/Config.php';
 $method = $_SERVER['REQUEST_METHOD'];
 $url = $_SERVER['REQUEST_URI'];
 $paths = array_filter( explode("/", $url));
@@ -6,15 +7,11 @@ $paths = array_filter( explode("/", $url));
 //var_dump($paths);
 //echo array_shift($paths);
 //echo $paths[2];
+//echo DB_UNIX;
 
 if ($paths[2] == 'events') {
-	$db_name  = '';
-	$hostname = '';
-	$username = '';
-	$password = '';
-
 	try {
-	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$dbh = new PDO(DB_UNIX, DB_USERNAME, DB_PASSWORD);
 	}
 	catch (PDOException $e) {
     		echo 'Connection failed: ' . $e->getMessage();
@@ -32,12 +29,7 @@ if ($paths[2] == 'events') {
 	echo "{\"timeline\":" . $json . "}";
 }
 else {
-	$db_name  = 'lumivote_candidates';
-	$hostname = 'localhost';
-	$username = 'lumivote_dev';
-	$password = 'votenow91';
-
-	$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+	$dbh = new PDO(DB_UNIX, DB_USERNAME, DB_PASSWORD);
 
 	$queryString = $_SERVER['QUERY_STRING'];
 	parse_str($queryString, $outputQuery);

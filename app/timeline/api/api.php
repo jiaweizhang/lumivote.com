@@ -1,4 +1,5 @@
 <?php
+require_once '../../../include/Config.php';
 $method = $_SERVER['REQUEST_METHOD'];
 $url = $_SERVER['REQUEST_URI'];
 $paths = array_filter( explode("/", $url));
@@ -16,8 +17,7 @@ $username = '';
 $password = '';
 
 // connect to the database
-$dbh = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
-
+$dbh = new PDO(DB_UNIX, DB_USERNAME, DB_PASSWORD);
 if ($method == 'GET') {  
   $sql = 'SELECT * FROM timeline';
 
