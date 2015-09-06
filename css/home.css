@@ -1,0 +1,36 @@
+/*** NAVBAR 
+.navbar-default {
+  background-color: transparent;
+}
+***/
+
+/*** BACKGROUND ***/
+body {
+  min-height: auto;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+}
+
+/*** CONTENT ***/
+.jumbotron {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+h2 {
+  text-align: center;
+}
+
+
+/*** FOOTER  ***/
+hr {
+  border-style: none;
+}
+
+footer {
+  position: absolute;
+
+}
