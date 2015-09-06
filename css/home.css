@@ -6,31 +6,28 @@
 
 /*** BACKGROUND ***/
 body {
-  min-height: auto;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-
+	min-height: auto;
+	width: 100%;
+	padding: 0;
+	margin: 0;
 }
 
 /*** CONTENT ***/
 .jumbotron {
-  max-width: 1000px;
-  margin: 0 auto;
-  background-color: transparent;
+	max-width: 1000px;
+	margin: 0 auto;
+	background-color: transparent;
 }
 
 h2 {
-  text-align: center;
+	text-align: center;
 }
-
 
 /*** FOOTER  ***/
 hr {
-  border-style: none;
+	border-style: none;
 }
 
 footer {
-  position: absolute;
-
+	position: absolute;
 }

@@ -37,7 +37,7 @@ app.controller('myController', function($scope, $http, $modal) {
 			}
 		});
 		modalInstance.result.then(function () {
-      		//on modal close
+      		// on modal close
       		$http.get("../api/candidates").success(function(response) {
 				$scope.candidates = response.candidates;
 			});

@@ -1,10 +1,10 @@
 <head>
-	<title>Bills</title>
+<title>Bills</title>
 </head>
 
 <div class="container jumbotron">
-		<h1>Bills</h1>
-		<p>Bills and all that ... </p>
+	<h1>Bills</h1>
+	<p>Bills and all that ...</p>
 </div>
 <div class="container table-responsive">
 	<table class="table table-striped table-bordered table-hover">
@@ -20,14 +20,18 @@
 		<tbody>
 			<tr ng-repeat="x in bills">
 				<td class="col-sm-6">{{ findTitle(x) }}</td>
-				<td class="col-sm-2">{{ findBillType(x.bill_type) +" "+x.number }}</th>
+				<td class="col-sm-2">{{ findBillType(x.bill_type) +" "+x.number
+					}}
+				</th>
 				<td class="col-sm-1">{{ findChamber(x.chamber) }}</td>
 				<td class="col-sm-2">{{ findDate(x.introduced_on) }}</td>
-				<td class="col-sm-1"><a target="_blank" ng-href="{{ x.urls.congress }}">Link</a></td>
+				<td class="col-sm-1"><a target="_blank"
+					ng-href="{{ x.urls.congress }}">Link</a></td>
 			</tr>
 		</tbody>
 	</table>
 </div>
 <div class="container text-center">
-	<button type="button" class="btn btn-primary" ng-click="addFifty()">Show More</button>
+	<button type="button" class="btn btn-primary" ng-click="addFifty()">Show
+		More</button>
 </div>

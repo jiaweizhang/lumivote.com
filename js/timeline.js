@@ -2,7 +2,7 @@ var app = angular.module('myApp', ['ui.bootstrap']);
 app.controller('myController', function($scope, $http, $modal) {
 
 	$scope.submit = function() {
-		//alert($scope.user);
+		// alert($scope.user);
 		$scope.event.date = $scope.date;
 		console.log($scope.event.date);
 		$http.post("../api/events", $scope.event).success(function(response) {
@@ -43,7 +43,7 @@ app.controller('myController', function($scope, $http, $modal) {
 			}
 		});
 		modalInstance.result.then(function () {
-      		//on modal close
+      		// on modal close
       		$http.get("../api/events").success(function(response) {
 				$scope.timeline = response.timeline;
 			});
