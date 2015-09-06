@@ -79,6 +79,7 @@ else if ($method == 'POST') {
   //var_dump($params);
   $params = json_decode(file_get_contents('php://input'),true);
   $fName = $params['fName'];
+  $nickName = $params['nickName'];
   $mName = $params['mName'];
   $lName = $params['lName'];
   $party = $params['party'];
@@ -90,11 +91,15 @@ else if ($method == 'POST') {
   $bio = $params['bio'];
   $twitter = $params['twitter'];
   $url = $params['url'];
-  $sql = 'INSERT INTO candidates (fName, mName, lName, party, occupation, birthdate, spouseFName, spouseMName, spouseLName, bio, twitter, url) VALUES (:fName, :mName, :lName, :party, :occupation, :birthdate, :spouseFName, :spouseMName, :spouseLName, :bio, :twitter, :url)';
+  $facebook = $params['facebook'];
+  $bioGuide = $params['bioGuide'];
+  $image = $params['image'];
+  $sql = 'INSERT INTO candidates (fName, nickName, mName, lName, party, occupation, birthdate, spouseFName, spouseMName, spouseLName, bio, twitter, url, facebook, bioGuide, image) VALUES (:fName, :nickName, :mName, :lName, :party, :occupation, :birthdate, :spouseFName, :spouseMName, :spouseLName, :bio, :twitter, :url,:facebook,:bioGuide, :image)';
 
   $stmt = $dbh->prepare($sql);
 
   $stmt->bindParam(':fName', $fName);
+  $stmt->bindParam(':nickName', $nickName);
   $stmt->bindParam(':mName', $mName);
   $stmt->bindParam(':lName', $lName);
   $stmt->bindParam(':party', $party);
@@ -106,6 +111,9 @@ else if ($method == 'POST') {
   $stmt->bindParam(':bio', $bio);
   $stmt->bindParam(':twitter', $twitter);
   $stmt->bindParam(':url', $url);
+  $stmt->bindParam(':facebook', $facebook);
+  $stmt->bindParam(':bioGuide', $bioGuide);
+  $stmt->bindParam(':image', $image);
 
   $stmt->execute();
   echo "POST executed.";
@@ -133,6 +141,7 @@ else if ($method == 'PUT') {
 
   $params = json_decode(file_get_contents('php://input'),true);
   $fName = $params['fName'];
+  $nickName = $params['nickName'];
   $mName = $params['mName'];
   $lName = $params['lName'];
   $party = $params['party'];
@@ -144,11 +153,15 @@ else if ($method == 'PUT') {
   $bio = $params['bio'];
   $twitter = $params['twitter'];
   $url = $params['url'];
+  $facebook = $params['facebook'];
+  $bioGuide = $params['bioGuide'];
+  $image = $params['image'];
 
-  $sql = 'UPDATE candidates SET fName=:fName, mName=:mName, lName=:lName, party=:party, occupation=:occupation, birthdate=:birthdate, spouseFName=:spouseFName, spouseMName=:spouseMName, spouseLName=:spouseLName, bio=:bio, twitter=:twitter, url=:url WHERE ID=:ID';
+  $sql = 'UPDATE candidates SET fName=:fName, nickName=:nickName, mName=:mName, lName=:lName, party=:party, occupation=:occupation, birthdate=:birthdate, spouseFName=:spouseFName, spouseMName=:spouseMName, spouseLName=:spouseLName, bio=:bio, twitter=:twitter, url=:url,facebook=:facebook,bioGuide=:bioGuide,image=:image WHERE ID=:ID';
   $stmt = $dbh->prepare($sql);
   $stmt->bindParam(":ID", $ID);
   $stmt->bindParam(':fName', $fName);
+  $stmt->bindParam(':nickName', $nickName);
   $stmt->bindParam(':mName', $mName);
   $stmt->bindParam(':lName', $lName);
   $stmt->bindParam(':party', $party);
@@ -160,6 +173,9 @@ else if ($method == 'PUT') {
   $stmt->bindParam(':bio', $bio);
   $stmt->bindParam(':twitter', $twitter);
   $stmt->bindParam(':url', $url);
+  $stmt->bindParam(':facebook', $facebook);
+  $stmt->bindParam(':bioGuide', $bioGuide);
+  $stmt->bindParam(':image', $image);
 
   $stmt->execute();
 

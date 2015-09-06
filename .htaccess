@@ -1,0 +1,3 @@
+#AddType application/x-httpd-php55 .php
+
+#AddHandler application/x-httpd-php55  .php55 .php

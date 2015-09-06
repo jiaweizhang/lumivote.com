@@ -2,6 +2,25 @@
 	<title>Presidential Candidates</title>
 </head>
 
+<script type="text/ng-template" id="candidateContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{findName(candidate)}}<button class="btn btn-info pull-right" type="button" ng-click="cancel()">Close</button></h3>
+        </div>
+        <div class="modal-body">
+        <div> 
+        	<h4>Background</h4>
+        	<p>Birthdate: {{candidate.birthdate}}</p>
+        	<p>Age: </p>
+        	<p>Occupation: {{candidate.occupation}}</p>
+        	<p>Spouse Name: {{candidate.spouseFName}}</p>
+      		
+        </div>
+        <!--<div class="modal-footer">
+            <button class="btn btn-info pull-right" type="button" ng-click="cancel()">Close</button>
+        </div>-->
+    </script>
+
+
 <div class="container jumbotron">
 		<h1>Candidates</h1>
 		<p>2016 Presidential Election Candidates.</p>	
@@ -15,36 +34,29 @@
 				<tbody>
 					<tr ng-repeat="x in democrats">
 						<td>
-							<h3 ng-bind="findName(x)"></h3>
-							<div>
-								Born <span ng-bind="findDate(x.birthdate)"></span>
-							</div>
-							<div>
-								<span ng-bind="x.occupation"></span>
-							</div>
-							<div>
-								<a target="_blank" ng-href="{{x.url}}">Personal Website</a>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="col-sm-4">
-			<h2 class="text-center">Independents</h2>
-			<table class="table">
-				<tbody>
-					<tr ng-repeat="x in independents">
-						<td>
-							<h3 ng-bind="findName(x)"></h3>
-							<div>
-								Born <span ng-bind="findDate(x.birthdate)"></span>
-							</div>
-							<div>
-								<span ng-bind="x.occupation"></span>
-							</div>
-							<div>
-								<a target="_blank" ng-href="{{x.url}}">Personal Website</a>
+							<div class="row">
+								<div class="col-sm-4">
+									<a href="" ng-click="open(x)">
+										<img ng-src="{{x.image}}" width="100%" alt="Description"/>
+									</a>
+								</div>
+								<div class="col-sm-8">
+									<p>
+										<a href="" ng-click="open(x)" style="font-size:150%">{{findName(x)}}</a>
+										<br/>
+										{{x.occupation}}
+										<br/>
+										<a target="_blank" ng-href="{{x.url}}">Election Website</a>
+									</p>
+									<div>
+										<a class="btn btn-social-icon btn-facebook" ng-href="{{x.facebook}}">
+    										<i class="fa fa-facebook"></i>
+  										</a>
+  										<a class="btn btn-social-icon btn-twitter" ng-href="https://twitter.com/{{x.twitter}}">
+    										<i class="fa fa-twitter"></i>
+  										</a>
+									</div>
+								</div>
 							</div>
 						</td>
 					</tr>
@@ -57,15 +69,64 @@
 				<tbody>
 					<tr ng-repeat="x in republicans">
 						<td>
-							<h3 ng-bind="findName(x)"></h3>
-							<div>
-								Born <span ng-bind="findDate(x.birthdate)"></span>
+							<div class="row">
+								<div class="col-sm-4">
+									<a href="" ng-click="open(x)">
+										<img ng-src="{{x.image}}" width="100%" alt="Description"/>
+									</a>
+								</div>
+								<div class="col-sm-8">
+									<p>
+										<a href="" ng-click="open(x)" style="font-size:150%">{{findName(x)}}</a>
+										<br/>
+										{{x.occupation}}
+										<br/>
+										<a target="_blank" ng-href="{{x.url}}">Election Website</a>
+									</p>
+									<div>
+										<a class="btn btn-social-icon btn-facebook" ng-href="{{x.facebook}}">
+    										<i class="fa fa-facebook"></i>
+  										</a>
+  										<a class="btn btn-social-icon btn-twitter" ng-href="https://twitter.com/{{x.twitter}}">
+    										<i class="fa fa-twitter"></i>
+  										</a>
+									</div>
+								</div>
 							</div>
-							<div>
-								<span ng-bind="x.occupation"></span>
-							</div>
-							<div>
-								<a target="_blank" ng-href="{{x.url}}">Personal Website</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm-4">
+			<h2 class="text-center">Independents</h2>
+			<table class="table">
+				<tbody>
+					<tr ng-repeat="x in independents">
+						<td>
+							<div class="row">
+								<div class="col-sm-4">
+									<a href="" ng-click="open(x)">
+										<img ng-src="{{x.image}}" width="100%" alt="Description"/>
+									</a>
+								</div>
+								<div class="col-sm-8">
+									<p>
+										<a href="" ng-click="open(x)" style="font-size:150%">{{findName(x)}}</a>
+										<br/>
+										{{x.occupation}}
+										<br/>
+										<a target="_blank" ng-href="{{x.url}}">Election Website</a>
+									</p>
+									<div>
+										<a class="btn btn-social-icon btn-facebook" ng-href="{{x.facebook}}">
+    										<i class="fa fa-facebook"></i>
+  										</a>
+  										<a class="btn btn-social-icon btn-twitter" ng-href="https://twitter.com/{{x.twitter}}">
+    										<i class="fa fa-twitter"></i>
+  										</a>
+									</div>
+								</div>
 							</div>
 						</td>
 					</tr>

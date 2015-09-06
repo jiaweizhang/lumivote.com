@@ -12,10 +12,9 @@
 		<thead>
 			<tr>
 				<th class="col-sm-2">Name</th>
-				<th class="col-sm-1">
+				<th class="col-sm-2">
 					<a href="" ng-click="order('date')">Date</a><span class="sortorder" ng-show="predicate === 'date'" ng-class="{reverse:reverse}"></span>
 				</th>
-				<th class="col-sm-1">Time</th>
 				<th class="col-sm-1">
 					<a href="" ng-click="order('party')">Party</a><span class="sortorder" ng-show="predicate === 'party'" ng-class="{reverse:reverse}"></span>
 				</th>
@@ -34,7 +33,6 @@
 		<tr ng-repeat="x in timeline | orderBy:predicate:reverse">
 			<td>{{ x.name}}</td>
 			<td ng-bind="findDate(x.date)"></td>
-			<td ng-bind="findTime(x.time)"></td>
 			<td>{{ x.party }}</td>
 			<td>{{ x.city }}</td>
 			<td>{{ x.state }}</td>
