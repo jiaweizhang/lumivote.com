@@ -1,1 +1,4 @@
 include/Config.php
+.buildpath
+.project
+.settings/

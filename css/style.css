@@ -16,6 +16,8 @@ body {
   font-family: 'Open Sans',sans-serif;
   font-weight: 300;
   background-color: #FFF;
+  padding-top: 60px;
+  margin-bottom: 40px;
 }
 
 .jumbotron {
@@ -124,7 +126,6 @@ footer {
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1rem;
   text-align: center;
 }
 
