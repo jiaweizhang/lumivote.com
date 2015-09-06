@@ -5,9 +5,9 @@ app.controller('myController', function($scope, $http, $modal) {
 		//alert($scope.user);
 		$scope.event.date = $scope.date;
 		console.log($scope.event.date);
-		$http.post("api/events", $scope.event).success(function(response) {
+		$http.post("../api/events", $scope.event).success(function(response) {
 			$scope.names = response;
-			$http.get("api/events").success(function(response) {
+			$http.get("../api/events").success(function(response) {
 				$scope.timeline = response.timeline;
 			});
 		});
@@ -18,7 +18,7 @@ app.controller('myController', function($scope, $http, $modal) {
 		console.log($scope.deleteURL);
 		$http.delete($scope.deleteURL).success(function(response) {
 			$scope.names = response;
-			$http.get("api/events").success(function(response) {
+			$http.get("../api/events").success(function(response) {
 				$scope.timeline = response.timeline;
 			});
 		})
@@ -44,7 +44,7 @@ app.controller('myController', function($scope, $http, $modal) {
 		});
 		modalInstance.result.then(function () {
       		//on modal close
-      		$http.get("api/events").success(function(response) {
+      		$http.get("../api/events").success(function(response) {
 				$scope.timeline = response.timeline;
 			});
     	})
@@ -53,7 +53,7 @@ app.controller('myController', function($scope, $http, $modal) {
 
 
 	$scope.init = function() {
-		$http.get("api/events").success(function(response) {
+		$http.get("../api/events").success(function(response) {
 			$scope.timeline = response.timeline;
 		})
 	}
@@ -104,7 +104,7 @@ app.controller('eventController', function($http, $scope, $modalInstance, eventI
 	$scope.eventID = eventID;
 	$scope.event = event;
 
-	$scope.putURL = "api/events?eventID="+ eventID;
+	$scope.putURL = "../api/events?eventID="+ eventID;
 	console.log($scope.editURL);
 
 	$scope.submit = function() {

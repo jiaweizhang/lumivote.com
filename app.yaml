@@ -22,15 +22,15 @@ handlers:
   script: api/api.php
 
 - url: /app/candidates
-  script: app/candidates/home.php
+  script: app/candidates/home.html
 
 - url: /app/timeline
   script: app/timeline/home.html
 
-- url: /app/candidates/api
+- url: /app/candidates/.*
   script: app/candidates/api/api.php
 
-- url: /app/timeline/api
+- url: /app/timeline/.*
   script: app/timeline/api/api.php
 
 - url: .*

@@ -4,12 +4,8 @@ $method = $_SERVER['REQUEST_METHOD'];
 $url = $_SERVER['REQUEST_URI'];
 $paths = array_filter( explode("/", $url));
 
-
 array_shift($paths);
 
-
-
-// set up the connection variables
 // connect to the database
 $dbh = new PDO(DB_UNIX, DB_USERNAME, DB_PASSWORD);
 if ($method == 'GET') {  
@@ -19,8 +15,6 @@ if ($method == 'GET') {
  $ID = -1;
  $party = $outputQuery['party'];
  $ID = $outputQuery['ID'];
- //echo $party;
- //echo $ID;
 
  if (strlen($party)!=0 ) {
    if ($party == 'democratic') {
@@ -41,8 +35,8 @@ if ($method == 'GET') {
   $json = json_encode( $result );
 
   echo "{\"candidates\":" . $json . "}";
-  }
-  else if (strlen($ID)!=0) {
+}
+else if (strlen($ID)!=0) {
   $sql = 'SELECT * FROM candidates WHERE ID=:ID';
   $stmt = $dbh->prepare($sql);
   $stmt->bindParam(':ID', $ID);
@@ -53,8 +47,8 @@ if ($method == 'GET') {
 
   echo "{\"candidates\":" . $json . "}";
 }  
- 
-  else {
+
+else {
 
   $sql = 'SELECT * FROM candidates';
   $stmt = $dbh->prepare($sql);
