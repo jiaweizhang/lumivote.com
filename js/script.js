@@ -1,5 +1,5 @@
 var myApp = angular
-		.module('myApp', [ 'ngRoute', 'ngSanitize', 'ui.bootstrap' ]);
+		.module('myApp', [ 'ngRoute', 'ngSanitize', 'ui.bootstrap', 'ngLoadingSpinner' ]);
 
 myApp.config(function($routeProvider) {
 	$routeProvider
