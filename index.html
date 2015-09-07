@@ -9,9 +9,9 @@
 
 <!-- SCROLLS -->
 <link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-social.css">
 <link rel="stylesheet" href="css/style.css">
 
@@ -68,20 +68,21 @@
 
 			<div id="navbarCollapse" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#/">Home</a></li>
+					<li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown" data-hover="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Elections <span
-							class="caret"></span></a>
+						aria-haspopup="true" aria-expanded="false"><i
+							class="fa fa-check"></i> Elections <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#timeline">Timeline</a></li>
 							<li><a href="#candidates">Candidates</a></li>
 						</ul></li>
-					<li><a href="#legislators">Congressmen</a></li>
+					<li><a href="#legislators"><i class="fa fa-users"></i>
+							Congressmen</a></li>
 					<li class="dropdown"><a href="" class="dropdown-toggle"
 						data-toggle="dropdown" data-hover="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Legislation <span
-							class="caret"></span></a>
+						aria-haspopup="true" aria-expanded="false"><i
+							class="fa fa-book"></i> Legislation <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#bills">Bills</a></li>
 							<li><a href="#votes">Votes</a></li>
@@ -104,7 +105,6 @@
 		<div ng-view></div>
 
 	</div>
-	<!-- <span us-spinner></span>-->
 	<hr />
 	<footer>
 		<ul class="social-media">
@@ -117,6 +117,7 @@
 		</ul>
 		<p class="text-center">&copy; 2015 Lumivote</p>
 	</footer>
+	
 </body>
 
 </html>

@@ -4,6 +4,11 @@
 }
 ***/
 
+html {
+	position: relative;
+	min-height: 100%;
+}
+
 /*** BACKGROUND ***/
 body {
 	min-height: auto;
@@ -12,11 +17,15 @@ body {
 	margin: 0;
 }
 
+.coverpage {
+	margin-top: 60px;
+}
+
 /*** CONTENT ***/
 .jumbotron {
-	max-width: 1000px;
+	adfadfmax-width: 1000px;
 	margin: 0 auto;
-	background-color: transparent;
+	adfasdfbackground-color: transparent;
 }
 
 h2 {
@@ -29,5 +38,5 @@ hr {
 }
 
 footer {
-	position: absolute;
+    position: absolute;
 }
