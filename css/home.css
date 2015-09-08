@@ -35,12 +35,3 @@ body {
 h2 {
 	text-align: center;
 }
-
-/*** FOOTER  ***/
-hr {
-	border-style: none;
-}
-
-footer {
-    position: absolute;
-}

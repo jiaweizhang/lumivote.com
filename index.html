@@ -53,7 +53,7 @@
 </head>
 
 <!-- define angular controller -->
-<body ng-controller="mainController">
+<body class="Site" ng-controller="mainController">
 
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -98,14 +98,13 @@
 
 
 	</nav>
-	<div id="main">
+	<div id="main" class="Site-content">
 
 		<!-- angular templating -->
 		<!-- this is where content will be injected -->
 		<div ng-view></div>
 
 	</div>
-	<hr />
 	<footer>
 		<ul class="social-media">
 			<li><a href="https://github.com/jiaweizhang/lumivote.com"><i
@@ -117,7 +116,6 @@
 		</ul>
 		<p class="text-center">&copy; 2015 Lumivote</p>
 	</footer>
-
 </body>
 
 </html>
