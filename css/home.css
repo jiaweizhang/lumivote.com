@@ -18,14 +18,18 @@ body {
 }
 
 .coverpage {
-	margin-top: 60px;
+	margin-top: -30px;
+}
+
+.header-content-inner h2 {
+	font-size: 50px;
 }
 
 /*** CONTENT ***/
 .jumbotron {
-	adfadfmax-width: 1000px;
+	max-width: 1000px;
 	margin: 0 auto;
-	adfasdfbackground-color: transparent;
+	background-color: transparent;
 }
 
 h2 {
