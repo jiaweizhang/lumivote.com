@@ -255,19 +255,15 @@ class DbHandler {
      * Fetching all candidates or by party
      */
     public function getCandidates($param) {
-        if ($param==NULL) {
+        if ($param == NULL) {
             $sql = "SELECT * FROM candidates";
-        }
-        else if (strcmp($param, "democratic")==0) {
+        } else if (strcmp($param, "democratic") == 0) {
             $sql = "SELECT * FROM candidates WHERE party='Democratic'";
-        }
-        else if (strcmp($param, "republican")==0) {
+        } else if (strcmp($param, "republican") == 0) {
             $sql = "SELECT * FROM candidates WHERE party='Republican'";
-        }
-        else if (strcmp($param, "independent")==0) {
+        } else if (strcmp($param, "independent") == 0) {
             $sql = "SELECT * FROM candidates WHERE party<>'Republican' AND party <>'Democratic'";
-        }
-        else {
+        } else {
             return NULL;
         }
         $stmt = $this->conn->prepare($sql);
@@ -281,29 +277,15 @@ class DbHandler {
     }
 
     /**
-     * Fetching all candidate by ID
+     * Fetching candidate by ID
      */
-    public function getCandidatesById($param) {
-        if ($param==NULL) {
-            $sql = "SELECT * FROM candidates";
-        }
-        else if (strcmp($param, "democratic")==0) {
-            $sql = "SELECT * FROM candidates WHERE party='Democratic'";
-        }
-        else if (strcmp($param, "republican")==0) {
-            $sql = "SELECT * FROM candidates WHERE party='Republican'";
-        }
-        else if (strcmp($param, "independent")==0) {
-            $sql = "SELECT * FROM candidates WHERE party<>'Republican' AND party <>'Democratic'";
-        }
-        else {
-            return NULL;
-        }
-        $stmt = $this->conn->prepare($sql);
+    public function getCandidateById($candidateId) {
+        $stmt = $this->conn->prepare("SELECT * from candidates WHERE ID=?");
+        $stmt->bind_param("i", $candidateId);
         if ($stmt->execute()) {
-            $candidates = $stmt->get_result();
+            $candidate = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            return $candidates;
+            return $candidate;
         } else {
             return NULL;
         }

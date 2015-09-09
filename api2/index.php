@@ -11,7 +11,6 @@ $app = new \Slim\Slim();
 $user_id = NULL;
 
 
-
 /**
  * User Registration
  * url - /register
@@ -157,8 +156,7 @@ $app->get('/events', function () use ($app) {
             $temp['description'] = $event['description'];
             array_push($response["timeline"], $temp);
         }
-    }
-    else {
+    } else {
         $response['error'] = true;
         $response['message'] = 'Error. Timeline retrieval failed.';
     }
@@ -175,65 +173,68 @@ $app->get('/candidates', function () use ($app) {
     $response = array();
     $db = new DbHandler();
     $partyValue = $app->request->params('party');
-    $candidates = $db->getCandidates($partyValue);
-    if ($candidates != NULL) {
-        $response["error"] = false;
-        $response["candidates"] = array();
-        while ($candidate = $candidates->fetch_assoc()) {
-            $temp = array();
-            $temp['ID'] = $candidate['ID'];
-            $temp['fName'] = $candidate['fName'];
-            $temp['nickName'] = $candidate['nickName'];
-            $temp['mName'] = $candidate['mName'];
-            $temp['lName'] = $candidate['lName'];
-            $temp['party'] = $candidate['party'];
-            $temp['occupation'] = $candidate['occupation'];
-            $temp['birthdate'] = $candidate['birthdate'];
-            $temp['spouseFName'] = $candidate['spouseFName'];
-            $temp['spouseMName'] = $candidate['spouseMName'];
-            $temp['spouseLName'] = $candidate['spouseLName'];
-            $temp['bio'] = $candidate['bio'];
-            $temp['twitter'] = $candidate['twitter'];
-            $temp['url'] = $candidate['url'];
-            $temp['facebook'] = $candidate['facebook'];
-            $temp['bioGuide'] = $candidate['bioGuide'];
-            $temp['image'] = $candidate['image'];
-            array_push($response["candidates"], $temp);
+    $idValue = $app->request->params('id');
+    if ($partyValue != NULL && $idValue != NULL) {
+        $response['error'] = true;
+        $response['message'] = 'Error. Invalid Query.';
+    } else if ($partyValue == NULL && $idValue != NULL) {
+        // query by ID
+        $candidate = $db->getCandidateById($idValue);
+        if ($candidate != NULL) {
+            $response["error"] = false;
+            $response['ID'] = $candidate['ID'];
+            $response['fName'] = $candidate['fName'];
+            $response['nickName'] = $candidate['nickName'];
+            $response['mName'] = $candidate['mName'];
+            $response['lName'] = $candidate['lName'];
+            $response['party'] = $candidate['party'];
+            $response['occupation'] = $candidate['occupation'];
+            $response['birthdate'] = $candidate['birthdate'];
+            $response['spouseFName'] = $candidate['spouseFName'];
+            $response['spouseMName'] = $candidate['spouseMName'];
+            $response['spouseLName'] = $candidate['spouseLName'];
+            $response['bio'] = $candidate['bio'];
+            $response['twitter'] = $candidate['twitter'];
+            $response['url'] = $candidate['url'];
+            $response['facebook'] = $candidate['facebook'];
+            $response['bioGuide'] = $candidate['bioGuide'];
+            $response['image'] = $candidate['image'];
+        } else {
+            $response['error'] = true;
+            $response['message'] = 'Error. Single candidate retrieval failed.';
+        }
+    } else {
+        $candidates = $db->getCandidates($partyValue);
+        if ($candidates != NULL) {
+            $response["error"] = false;
+            $response["candidates"] = array();
+            while ($candidate = $candidates->fetch_assoc()) {
+                $temp = array();
+                $temp['ID'] = $candidate['ID'];
+                $temp['fName'] = $candidate['fName'];
+                $temp['nickName'] = $candidate['nickName'];
+                $temp['mName'] = $candidate['mName'];
+                $temp['lName'] = $candidate['lName'];
+                $temp['party'] = $candidate['party'];
+                $temp['occupation'] = $candidate['occupation'];
+                $temp['birthdate'] = $candidate['birthdate'];
+                $temp['spouseFName'] = $candidate['spouseFName'];
+                $temp['spouseMName'] = $candidate['spouseMName'];
+                $temp['spouseLName'] = $candidate['spouseLName'];
+                $temp['bio'] = $candidate['bio'];
+                $temp['twitter'] = $candidate['twitter'];
+                $temp['url'] = $candidate['url'];
+                $temp['facebook'] = $candidate['facebook'];
+                $temp['bioGuide'] = $candidate['bioGuide'];
+                $temp['image'] = $candidate['image'];
+                array_push($response["candidates"], $temp);
+            }
+        } else {
+            $response['error'] = true;
+            $response['message'] = 'Error. Candidate retrieval failed.';
         }
     }
-    else {
-        $response['error'] = true;
-        $response['message'] = 'Error. Candidate retrieval failed.';
-    }
     echoRespnse(200, $response);
-    /*$response = array();
-    $db = new DbHandler();
-
-    // creating new task
-    $timeline = $db->getEvents();
-
-    if ($timeline != NULL) {
-        $response["error"] = false;
-        $response["timeline"] = array();
-        while ($event = $timeline->fetch_assoc()) {
-            $temp = array();
-            $temp['name'] = $event['name'];
-            $temp['date'] = $event['date'];
-            $temp['time'] = $event['time'];
-            $temp['party'] = $event['party'];
-            $temp['city'] = $event['city'];
-            $temp['state'] = $event['state'];
-            $temp['type'] = $event['type'];
-            $temp['description'] = $event['description'];
-            array_push($response["timeline"], $temp);
-        }
-    }
-    else {
-        $response['error'] = true;
-        $response['message'] = 'Error. Timeline retrieval failed.';
-    }
-    echoRespnse(200, $response);
-    */
 });
 
 
@@ -282,7 +283,9 @@ function authenticate() {
         echoRespnse(400, $response);
         $app->stop();
     }
-};
+}
+
+;
 
 /**
  * Verifying required params posted or not
