@@ -22,10 +22,10 @@ handlers:
   static_dir: pages
 
 - url: /api/.*
-  script: api/api.php
+  script: api/index.php
 
 - url: /api2/.*
-  script: api2/index.php
+  script: api2/api.php
 
 - url: .*
   script: index.html
