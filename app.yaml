@@ -24,8 +24,5 @@ handlers:
 - url: /api/.*
   script: api/index.php
 
-- url: /api2/.*
-  script: api2/api.php
-
 - url: .*
   script: index.html

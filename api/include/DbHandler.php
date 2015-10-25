@@ -189,7 +189,7 @@ class DbHandler {
         return md5(uniqid(rand(), true));
     }
 
-    /* ----------- Authenticated User methods */
+    /* ----------- Authenticated User methods ----------- */
 
     /**
      * Creating new user profile

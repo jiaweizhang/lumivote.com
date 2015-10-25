@@ -10,20 +10,25 @@ View the corresponding Android application at https://github.com/alexdao/Lumivot
 ##Libraries
 Built with the help of these frameworks:
 * [AngularJS](https://angularjs.org/)
-* [jQuery](https://jquery.com/)
-* [Laravel](http://laravel.com)
+* [Slim](http://www.slimframework.com/)
+* [Bootstrap](http://getbootstrap.com/)
 
-With the help of these directives:
+With the help of these AngularJS directives:
 * [Angular-UI](https://angular-ui.github.io/bootstrap/)
 
 With the help of these tools:
-* [EasyPHP](http://www.easyphp.org/)
 * [phpMyAdmin](https://www.phpmyadmin.net/)
+* [MySQL Workbench](https://www.mysql.com/products/workbench/)
+* [Google Cloud SQL](https://cloud.google.com/sql/)
+* [Google App Engine](https://cloud.google.com/appengine/)
+* [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
+* [Bootstrap Social](http://lipis.github.io/bootstrap-social/)
 
 Data taken from the following APIs:
 * [Lumivote API](http://lumivote.com)
+* [Sunlight Congress API](https://sunlightlabs.github.io/congress/)
 * [United States Images](https://github.com/unitedstates/images)
-* [Sunlight Congress API](http://developer.nytimes.com/docs/read/congress_api)
+* [NY Times Congress API](http://developer.nytimes.com/docs/read/congress_api)
 * [GovTrack.us](https://www.govtrack.us)
 * [congress-legislators Database](https://github.com/unitedstates/congress-legislators)
 

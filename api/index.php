@@ -68,7 +68,6 @@ $app->post('/login', function () use ($app) {
     if ($db->checkLogin($email, $password)) {
         // get the user by email
         $user = $db->getUserByEmail($email);
-
         if ($user != NULL) {
             $response["error"] = false;
             $response['email'] = $user['email'];
@@ -247,17 +246,6 @@ function authenticate() {
     // Getting request headers
     $headers = $app->request->headers;
     $response = array();
-
-    /*$db = new DbHandler();
-
-    // get the api key
-    $api_key = $headers['Authorization'];
-
-    $response2 = array();
-    $response2["error"] = true;
-    $response2["message"] = $db->getUserId($api_key)['id'];
-    echoRespnse(400, $response2);
-    $app->stop();*/
     // Verifying Authorization Header
     if (isset($headers['Authorization'])) {
         $db = new DbHandler();
@@ -351,10 +339,4 @@ function echoRespnse($status_code, $response) {
     echo json_encode($response);
 }
 
-/**
- * Step 4: Run the Slim application
- *
- * This method should be called last. This executes the Slim application
- * and returns the HTTP response to the HTTP client.
- */
 $app->run();
