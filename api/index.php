@@ -232,7 +232,6 @@ $app->get('/lumitrivia/question/:qid', function ($qid) use ($app) {
 
 //http://lumivote.com/api/lumitrivia/question
 $app->get('/lumitrivia/question', function () use ($app) {
-    echo "random question";
 
     $db = new DbHandler();
     $res = $db->getRandomQuestion();

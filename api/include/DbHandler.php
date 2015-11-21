@@ -240,52 +240,56 @@ class DbHandler
         //$answers['answers'] = $menu;
 
         return $question_result;
+    }
+
+    public function getRandomQuestion()
+    {
+        $stmt = $this->conn->prepare("SELECT qid FROM questions ORDER BY RAND() LIMIT 1");
+        if (!$stmt->execute()) {
+            return 1;
+        }
+
+        $qid2 = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        $qid = $qid2['qid'];
 
 
-
-
-
-
-
-
-        /*$stmt = $this->conn->prepare("SELECT * FROM questions WHERE qid=?");
+        $stmt = $this->conn->prepare("SELECT * from questions WHERE qid=?");
         $stmt->bind_param("s", $qid);
         if (!$stmt->execute()) {
             return 1;
         }
-        $result = $stmt->get_result()->fetch_assoc();
+        $question_result = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
 
-        $stmt->close();*/
+        $output = array();
 
-        /*$stmt = $this->conn->prepare("SELECT answer, iscorrect FROM answers WHERE qid=?");
-        $stmt->bind_param("s", $qid);
 
-        /* execute statement */
-        //$stmt->execute();
+        if($stmt = $this->conn->prepare("SELECT answer, iscorrect FROM answers WHERE qid=?")){
 
-        /* bind result variables */
-        //$stmt->bind_result($answer, $iscorrect);
+            $stmt->bind_param("s", $qid); //query is $_GET['query'], user input
 
-        /* fetch values */
-        //$ret = array();
-        /*while ($stmt->fetch()) {
-            $row = array();
-            $row['answer'] = $answer;
-            $row['iscorrect'] = $iscorrect;
-            $ret[] = $row;
-        }*/
+            $stmt->execute();
+            $answer = null;
+            $iscorrect = null;
+            $stmt->bind_result($answer, $iscorrect);
 
-        /*for ($i = 0; $i <5; $i++) {
-            $row = array();
-            $row['answer'] = 'myas';
-            $row['iscorrect'] = 'minn';
-            $ret[] = $row;
+            $menu = array();
+            while($stmt->fetch()){ //problematic code...
+                $menu[] = array(
+                    "answer" => $answer,
+                    "iscorrect" => $iscorrect
+                );
+            }
+            $stmt->close();
+        } else {
+            return 2;
         }
+        $question_result['answers'] = $menu;
+        //$answers['answers'] = $menu;
 
-
-        /* close statement */
-        //$stmt->close();
-        //return $ret;
+        return $question_result;
     }
 }
 
