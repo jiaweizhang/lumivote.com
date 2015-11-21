@@ -7,11 +7,13 @@
  * @author Ravi Tamada
  * @link URL Tutorial link
  */
-class DbHandler {
+class DbHandler
+{
 
     private $conn;
 
-    function __construct() {
+    function __construct()
+    {
         require_once dirname(__FILE__) . '/DbConnect.php';
         //require_once 'DbConnect.php';
         // opening db connection
@@ -54,7 +56,8 @@ class DbHandler {
     /**
      * Fetching all events
      */
-    public function getEvents() {
+    public function getEvents()
+    {
         $stmt = $this->conn->prepare("SELECT * FROM timeline");
         if ($stmt->execute()) {
             $timeline = $stmt->get_result();
@@ -68,7 +71,8 @@ class DbHandler {
     /**
      * Fetching all candidates or by party
      */
-    public function getCandidates($param) {
+    public function getCandidates($param)
+    {
         if ($param == NULL) {
             $sql = "SELECT * FROM candidates";
         } else if (strcmp($param, "democratic") == 0) {
@@ -93,7 +97,8 @@ class DbHandler {
     /**
      * Fetching candidate by ID
      */
-    public function getCandidateById($candidateId) {
+    public function getCandidateById($candidateId)
+    {
         $stmt = $this->conn->prepare("SELECT * from candidates WHERE ID=?");
         $stmt->bind_param("i", $candidateId);
         if ($stmt->execute()) {
@@ -104,6 +109,44 @@ class DbHandler {
             return NULL;
         }
     }
+
+    public function createQuestion($input)
+    {
+        $author = $input['author'];
+        $question = $input['question'];
+        $answers = $input['answers'];
+
+        // insert query
+        $stmt = $this->conn->prepare("INSERT INTO questions(question, author) values(?, ?)");
+        $stmt->bind_param("ss", $question, $author);
+
+        $result = $stmt->execute();
+
+        $stmt->close();
+
+        if (!$result) {
+            return 1;
+        }
+
+        $qid = 0;
+        $stmt = $this->conn->prepare("SELECT qid from questions WHERE question=?");
+        $stmt->bind_param("s", $question);
+        if ($stmt->execute()) {
+            $qid = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+        } else {
+            return 0;
+        }
+
+        var_dump($qid);
+
+        if ($qid) {
+            return 0;
+        } else {
+            return 2;
+        }
+    }
+
 }
 
 ?>

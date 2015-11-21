@@ -23,10 +23,10 @@ $app->post('/user', function () use ($app) {
     $res = $db->createUser($user);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
-        $response = array("error" => false,   "message" => "You are successfully registered");
+        $response = array("error" => false, "message" => "You are successfully registered");
         echoRespnse(201, $response);
     } else if ($res == USER_CREATE_FAILED) {
-        $response = array("error" => true,   "message" => "Oops! An error occurred while registering");
+        $response = array("error" => true, "message" => "Oops! An error occurred while registering");
         echoRespnse(200, $response);
     } else if ($res == USER_ALREADY_EXISTED) {
         $response["error"] = true;
@@ -144,6 +144,29 @@ $app->get('/candidates', function () use ($app) {
     }
     echoRespnse(200, $response);
 });
+
+// http://lumivote.com/api/lumitrivia/question
+$app->post('/lumitrivia/question', function () use ($app) {
+
+    $json = $app->request->getBody();
+    $input = json_decode($json, true); // parse the JSON into an assoc. array
+
+
+    $db = new DbHandler();
+    $res = $db->createQuestion($input);
+
+    if ($res == 0) {
+        $response = array("error" => false, "message" => "question add success");
+        echoRespnse(201, $response);
+    } else if ($res == 1) {
+        $response = array("error" => true, "message" => "question add failure");
+        echoRespnse(200, $response);
+    } else if ($res == 2) {
+        $response = array("error" => true, "message" => "qid find failure");
+        echoRespnse(200, $response);
+    }
+});
+
 
 /**
  * Verifying required params posted or not
