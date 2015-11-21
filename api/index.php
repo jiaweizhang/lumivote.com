@@ -211,20 +211,43 @@ $app->post('/lumitrivia/questiondelete', function () use ($app) {
     }
 });
 
-//http://lumivote.com/api/lumitrivia/question?qid={qid}
+//http://lumivote.com/api/lumitrivia/question/:qid
 $app->get('/lumitrivia/question/:qid', function ($qid) use ($app) {
     //echo $qid;
 
     $db = new DbHandler();
     $res = $db->getQuestionById($qid);
 
-    var_dum($res);
-    /*if ($res == 1) {
-        $response = array("error" => false, "message" => "success");
+    //var_dump($res);
+    if ($res == 1) {
+        $response = array("error" => true, "message" => "failed getting question");
+        echoRespnse(201, $response);
+    } else if ($res == 1) {
+        $response = array("error" => true, "message" => "failed getting answers");
         echoRespnse(201, $response);
     } else {
         echoRespnse(200, $res);
-    }*/
+    }
+});
+
+//http://lumivote.com/api/lumitrivia/question
+$app->get('/lumitrivia/question', function () use ($app) {
+    echo "random question";
+
+    $db = new DbHandler();
+    $res = $db->getRandomQuestion();
+
+    //var_dump($res);
+    if ($res == 1) {
+        $response = array("error" => true, "message" => "failed getting question");
+        echoRespnse(201, $response);
+    } else if ($res == 1) {
+        $response = array("error" => true, "message" => "failed getting answers");
+        echoRespnse(201, $response);
+    } else {
+        echoRespnse(200, $res);
+    }
+
 });
 
 /**

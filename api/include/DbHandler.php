@@ -11,7 +11,6 @@ class DbHandler
 {
 
     private $conn;
-    private $conn2;
 
     function __construct()
     {
@@ -20,7 +19,6 @@ class DbHandler
         // opening db connection
         $db = new DbConnect();
         $this->conn = $db->connect();
-        $this->conn2 = $db->connect2();
     }
 
     /* ------------- `users` table method ------------------ */
@@ -206,22 +204,42 @@ class DbHandler
 
     public function getQuestionById($qid)
     {
-        $stmt = $this->conn2->prepare("SELECT * FROM questions WHERE qid=?");
-        $stmt->bindParam(1, $qid);
+
+        $stmt = $this->conn->prepare("SELECT * from questions WHERE qid=?");
+        $stmt->bind_param("s", $qid);
+        if (!$stmt->execute()) {
+            return 1;
+        }
+        $question_result = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        $output = array();
 
 
-        $stmt->execute();
+        if($stmt = $this->conn->prepare("SELECT answer, iscorrect FROM answers WHERE qid=?")){
 
-        $result = $stmt->get_result()->fetch_assoc();
+            $stmt->bind_param("s", $qid); //query is $_GET['query'], user input
 
-        return $result;
+            $stmt->execute();
+            $answer = null;
+            $iscorrect = null;
+            $stmt->bind_result($answer, $iscorrect);
 
+            $menu = array();
+            while($stmt->fetch()){ //problematic code...
+                $menu[] = array(
+                    "answer" => $answer,
+                    "iscorrect" => $iscorrect
+                );
+            }
+            $stmt->close();
+        } else {
+            return 2;
+        }
+        $question_result['answers'] = $menu;
+        //$answers['answers'] = $menu;
 
-
-
-
-
-
+        return $question_result;
 
 
 

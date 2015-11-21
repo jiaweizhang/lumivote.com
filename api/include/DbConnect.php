@@ -9,7 +9,6 @@
 class DbConnect {
 
     private $conn;
-    private $conn2;
 
     function __construct() {        
     }
@@ -31,23 +30,6 @@ class DbConnect {
 
         // returing connection resource
         return $this->conn;
-    }
-
-    function connect2() {
-        include_once dirname(__FILE__) . '/Config.php';
-
-        // Connecting to mysql database
-        $this->conn = new mysqli(null, DB_USERNAME, DB_PASSWORD, DB_NAME, null, DB_UNIX);
-
-        $this->conn2 = new pdo(DB_PDO,
-            DB_USERNAME,  // username
-            DB_PASSWORD       // password
-        );
-
-
-
-        // returing connection resource
-        return $this->conn2;
     }
 
 
