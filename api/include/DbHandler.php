@@ -116,35 +116,67 @@ class DbHandler
         $question = $input['question'];
         $answers = $input['answers'];
 
-        // insert query
         $stmt = $this->conn->prepare("INSERT INTO questions(question, author) values(?, ?)");
         $stmt->bind_param("ss", $question, $author);
-
         $result = $stmt->execute();
-
         $stmt->close();
-
         if (!$result) {
             return 1;
         }
 
-        $qid = 0;
         $stmt = $this->conn->prepare("SELECT qid from questions WHERE question=?");
         $stmt->bind_param("s", $question);
-        if ($stmt->execute()) {
-            $qid = $stmt->get_result()->fetch_assoc();
-            $stmt->close();
-        } else {
-            return 0;
-        }
-
-        var_dump($qid);
-
-        if ($qid) {
-            return 0;
-        } else {
+        if (!$stmt->execute()) {
             return 2;
         }
+        $qid = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        foreach ($answers as $val) {
+            $stmt = $this->conn->prepare("INSERT INTO answers(qid, answer, iscorrect) values(?, ?, ?)");
+            $stmt->bind_param("sss", $qid['qid'], $val['answer'], $val['iscorrect']);
+            $answerresult = $stmt->execute();
+            if (!$answerresult) {
+                return 3;
+            }
+            $stmt->close();
+        }
+        return 0;
+    }
+
+    public function updateQuestion($input)
+    {
+        $editor = $input['editor'];
+        $qid = $input['qid'];
+        $question = $input['question'];
+        $answers = $input['answers'];
+
+        $stmt = $this->conn->prepare("UPDATE questions SET question=?, editor=? WHERE qid=?");
+        $stmt->bind_param("sss", $question, $editor, $qid);
+        $result = $stmt->execute();
+        $stmt->close();
+        if (!$result) {
+            return 1;
+        }
+
+        $stmt = $this->conn->prepare("DELETE from answers WHERE qid=?");
+        $stmt->bind_param("s", $qid);
+        $result = $stmt->execute();
+        $stmt->close();
+        if (!$result) {
+            return 2;
+        }
+
+        foreach ($answers as $val) {
+            $stmt = $this->conn->prepare("INSERT INTO answers(qid, answer, iscorrect) values(?, ?, ?)");
+            $stmt->bind_param("sss", $qid, $val['answer'], $val['iscorrect']);
+            $answerresult = $stmt->execute();
+            if (!$answerresult) {
+                return 3;
+            }
+            $stmt->close();
+        }
+        return 0;
     }
 
 }

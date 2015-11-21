@@ -151,7 +151,6 @@ $app->post('/lumitrivia/question', function () use ($app) {
     $json = $app->request->getBody();
     $input = json_decode($json, true); // parse the JSON into an assoc. array
 
-
     $db = new DbHandler();
     $res = $db->createQuestion($input);
 
@@ -164,9 +163,36 @@ $app->post('/lumitrivia/question', function () use ($app) {
     } else if ($res == 2) {
         $response = array("error" => true, "message" => "qid find failure");
         echoRespnse(200, $response);
+    }else if ($res == 3) {
+        $response = array("error" => true, "message" => "error inserting answer");
+        echoRespnse(200, $response);
     }
 });
 
+//http://lumivote.com/api/lumitrivia/question
+$app->put('/lumitrivia/question', function () use ($app) {
+
+    $json = $app->request->getBody();
+    $input = json_decode($json, true); // parse the JSON into an assoc. array
+
+
+    $db = new DbHandler();
+    $res = $db->updateQuestion($input);
+
+    if ($res == 0) {
+        $response = array("error" => false, "message" => "success");
+        echoRespnse(201, $response);
+    } else if ($res == 1) {
+        $response = array("error" => true, "message" => "failed to update question");
+        echoRespnse(200, $response);
+    } else if ($res == 2) {
+        $response = array("error" => true, "message" => "failed to delete answers");
+        echoRespnse(200, $response);
+    }else if ($res == 3) {
+        $response = array("error" => true, "message" => "error inserting answer");
+        echoRespnse(200, $response);
+    }
+});
 
 /**
  * Verifying required params posted or not
