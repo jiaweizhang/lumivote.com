@@ -26,7 +26,7 @@ class DbHandler {
      * @param String $email User login email id
      * @param String $password User login password
      */
-    public function createUser($email, $password) {
+    /*public function createUser($email, $password) {
         require_once 'PassHash.php';
         $response = array();
 
@@ -60,6 +60,33 @@ class DbHandler {
         }
 
         return $response;
+    }*/
+
+    public function createUser($user)
+    {
+        require_once 'PassHash.php';
+        $username = $user['username'];
+        $email = $user['email'];
+        $password = $user['password'];
+        // Generating password hash
+        $password_hash = PassHash::hash($password);
+
+        // insert query
+        $stmt = $this->conn->prepare("INSERT INTO users(username, email, password_hash) values(?, ?, ?)");
+        $stmt->bind_param("sss", $username, $email, $password_hash);
+
+        $result = $stmt->execute();
+
+        $stmt->close();
+
+        // Check for successful insertion
+        if ($result) {
+            // User successfully inserted
+            return USER_CREATED_SUCCESSFULLY;
+        } else {
+            // Failed to create user
+            return USER_CREATE_FAILED;
+        }
     }
 
     /**

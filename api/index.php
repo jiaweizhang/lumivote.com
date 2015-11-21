@@ -126,6 +126,34 @@ $app->post('/profile', 'authenticate', function () use ($app) {
     }
 });
 
+/**
+ * User Creation
+ */
+$app->post('/user', function () use ($app) {
+
+    $response = array();
+
+    // reading post params
+    $user = $app->request->post('user');
+
+    $db = new DbHandler();
+    $res = $db->createUser($email, $password);
+
+    if ($res == USER_CREATED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["message"] = "You are successfully registered";
+        echoRespnse(201, $response);
+    } else if ($res == USER_CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while registereing";
+        echoRespnse(200, $response);
+    } else if ($res == USER_ALREADY_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Sorry, this email already existed";
+        echoRespnse(200, $response);
+    }
+});
+
 
 /**
  * Get all timeline events
