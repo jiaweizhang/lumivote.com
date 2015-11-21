@@ -11,6 +11,7 @@ class DbHandler
 {
 
     private $conn;
+    private $conn2;
 
     function __construct()
     {
@@ -19,6 +20,7 @@ class DbHandler
         // opening db connection
         $db = new DbConnect();
         $this->conn = $db->connect();
+        $this->conn2 = $db->connect2();
     }
 
     /* ------------- `users` table method ------------------ */
@@ -200,6 +202,72 @@ class DbHandler
             return 2;
         }
         return 0;
+    }
+
+    public function getQuestionById($qid)
+    {
+        $stmt = $this->conn2->prepare("SELECT * FROM questions WHERE qid=?");
+        $stmt->bindParam(1, $qid);
+
+
+        $stmt->execute();
+
+        $result = $stmt->get_result()->fetch_assoc();
+
+        return $result;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*$stmt = $this->conn->prepare("SELECT * FROM questions WHERE qid=?");
+        $stmt->bind_param("s", $qid);
+        if (!$stmt->execute()) {
+            return 1;
+        }
+        $result = $stmt->get_result()->fetch_assoc();
+
+        $stmt->close();*/
+
+        /*$stmt = $this->conn->prepare("SELECT answer, iscorrect FROM answers WHERE qid=?");
+        $stmt->bind_param("s", $qid);
+
+        /* execute statement */
+        //$stmt->execute();
+
+        /* bind result variables */
+        //$stmt->bind_result($answer, $iscorrect);
+
+        /* fetch values */
+        //$ret = array();
+        /*while ($stmt->fetch()) {
+            $row = array();
+            $row['answer'] = $answer;
+            $row['iscorrect'] = $iscorrect;
+            $ret[] = $row;
+        }*/
+
+        /*for ($i = 0; $i <5; $i++) {
+            $row = array();
+            $row['answer'] = 'myas';
+            $row['iscorrect'] = 'minn';
+            $ret[] = $row;
+        }
+
+
+        /* close statement */
+        //$stmt->close();
+        //return $ret;
     }
 }
 

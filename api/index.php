@@ -211,6 +211,22 @@ $app->post('/lumitrivia/questiondelete', function () use ($app) {
     }
 });
 
+//http://lumivote.com/api/lumitrivia/question?qid={qid}
+$app->get('/lumitrivia/question/:qid', function ($qid) use ($app) {
+    //echo $qid;
+
+    $db = new DbHandler();
+    $res = $db->getQuestionById($qid);
+
+    var_dum($res);
+    /*if ($res == 1) {
+        $response = array("error" => false, "message" => "success");
+        echoRespnse(201, $response);
+    } else {
+        echoRespnse(200, $res);
+    }*/
+});
+
 /**
  * Verifying required params posted or not
  */
