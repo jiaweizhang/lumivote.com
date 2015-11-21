@@ -12,15 +12,12 @@
     <table class="table table-hover table-responsive">
         <thead>
         <tr>
-            <th class="col-sm-2">Name</th>
+            <th class="col-sm-3">Name</th>
             <th class="col-sm-2"><a href="" ng-click="order('date')">Date</a><span
                     class="sortorder" ng-show="predicate === 'date'"
                     ng-class="{reverse:reverse}"></span></th>
             <th class="col-sm-1"><a href="" ng-click="order('party')">Party</a><span
                     class="sortorder" ng-show="predicate === 'party'"
-                    ng-class="{reverse:reverse}"></span></th>
-            <th class="col-sm-1"><a href="" ng-click="order('city')">City</a><span
-                    class="sortorder" ng-show="predicate === 'city'"
                     ng-class="{reverse:reverse}"></span></th>
             <th class="col-sm-1"><a href="" ng-click="order('state')">State</a><span
                     class="sortorder" ng-show="predicate === 'state'"
@@ -35,7 +32,6 @@
             <td>{{ x.name}}</td>
             <td ng-bind="findDate(x.date)"></td>
             <td>{{ x.party }}</td>
-            <td>{{ x.city }}</td>
             <td>{{ x.state }}</td>
             <td>{{ x.type }}</td>
             <td>{{ x.description }}</td>
