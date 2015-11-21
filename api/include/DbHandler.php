@@ -179,6 +179,28 @@ class DbHandler
         return 0;
     }
 
+
+    public function deleteQuestion($input)
+    {
+        $qid = $input['qid'];
+
+        $stmt = $this->conn->prepare("DELETE from questions WHERE qid=?");
+        $stmt->bind_param("s", $qid);
+        $result = $stmt->execute();
+        $stmt->close();
+        if (!$result) {
+            return 1;
+        }
+
+        $stmt = $this->conn->prepare("DELETE from answers WHERE qid=?");
+        $stmt->bind_param("s", $qid);
+        $result = $stmt->execute();
+        $stmt->close();
+        if (!$result) {
+            return 2;
+        }
+        return 0;
+    }
 }
 
 ?>
