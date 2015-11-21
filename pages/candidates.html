@@ -35,7 +35,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <h2 class="text-center">Democrats</h2>
             <table class="table">
                 <tbody>
@@ -69,45 +69,11 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <h2 class="text-center">Republicans</h2>
             <table class="table">
                 <tbody>
                 <tr ng-repeat="x in republicans">
-                    <td>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <a href="" ng-click="open(x)"> <img ng-src="{{x.image}}"
-                                                                    width="100%" alt="Description"/>
-                                </a>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>
-                                    <a href="" ng-click="open(x)" style="font-size: 150%">{{findName(x)}}</a>
-                                    <br/> {{x.occupation}} <br/> <a target="_blank"
-                                                                    ng-href="{{x.url}}">Election Website</a>
-                                </p>
-
-                                <div>
-                                    <a class="btn btn-social-icon btn-facebook"
-                                       ng-href="{{x.facebook}}"> <i class="fa fa-facebook"></i>
-                                    </a> <a class="btn btn-social-icon btn-twitter"
-                                            ng-href="https://twitter.com/{{x.twitter}}"> <i
-                                        class="fa fa-twitter"></i>
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm-4">
-            <h2 class="text-center">Independents</h2>
-            <table class="table">
-                <tbody>
-                <tr ng-repeat="x in independents">
                     <td>
                         <div class="row">
                             <div class="col-sm-4">
