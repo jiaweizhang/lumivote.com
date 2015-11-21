@@ -133,11 +133,19 @@ $app->post('/user', function () use ($app) {
 
     $response = array();
 
-    // reading post params
-    $user = $app->request->post('user');
+    $json = $app->request->getBody();
+    $input = json_decode($json, true); // parse the JSON into an assoc. array
+    // do other stuff
+    //echoRespnse(200, $user);
+
+    var_dump($input['user']);
+
+    $user = $input['user'];
+
+    echo $user['username'];
 
     $db = new DbHandler();
-    $res = $db->createUser($email, $password);
+    $res = $db->createUser($user);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response["error"] = false;
@@ -145,7 +153,7 @@ $app->post('/user', function () use ($app) {
         echoRespnse(201, $response);
     } else if ($res == USER_CREATE_FAILED) {
         $response["error"] = true;
-        $response["message"] = "Oops! An error occurred while registereing";
+        $response["message"] = "Oops! An error occurred while registering";
         echoRespnse(200, $response);
     } else if ($res == USER_ALREADY_EXISTED) {
         $response["error"] = true;
