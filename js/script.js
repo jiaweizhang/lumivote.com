@@ -137,10 +137,6 @@ myApp.controller('candidateController', function ($scope, $http, $modal, $log) {
             function (response) {
                 $scope.republicans = response.candidates;
             })
-        $http.get("http://lumivote.com/api/candidates?party=independent").success(
-            function (response) {
-                $scope.independents = response.candidates;
-            })
     }
 
     $scope.init();
