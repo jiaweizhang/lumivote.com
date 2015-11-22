@@ -24,14 +24,14 @@ $app->post('/user', function () use ($app) {
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response = array("error" => false, "message" => "You are successfully registered");
-        echoRespnse(201, $response);
+        echoResponse(201, $response);
     } else if ($res == USER_CREATE_FAILED) {
         $response = array("error" => true, "message" => "Oops! An error occurred while registering");
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     } else if ($res == USER_ALREADY_EXISTED) {
         $response["error"] = true;
         $response["message"] = "Sorry, this email already existed";
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     }
 });
 
@@ -68,7 +68,7 @@ $app->get('/events', function () use ($app) {
         $response['error'] = true;
         $response['message'] = 'Error. Timeline retrieval failed.';
     }
-    echoRespnse(200, $response);
+    echoResponse(200, $response);
 });
 
 /**
@@ -142,109 +142,104 @@ $app->get('/candidates', function () use ($app) {
             $response['message'] = 'Error. Candidate retrieval failed.';
         }
     }
-    echoRespnse(200, $response);
+    echoResponse(200, $response);
 });
 
 // http://lumivote.com/api/lumitrivia/question
 $app->post('/lumitrivia/question', function () use ($app) {
     $json = $app->request->getBody();
-    $input = json_decode($json, true); // parse the JSON into an assoc. array
+    $input = json_decode($json, true);
 
     $db = new DbHandler();
     $res = $db->createQuestion($input);
 
     if ($res == 0) {
         $response = array("error" => false, "message" => "question add success");
-        echoRespnse(201, $response);
+        echoResponse(201, $response);
     } else if ($res == 1) {
         $response = array("error" => true, "message" => "question add failure");
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     } else if ($res == 2) {
         $response = array("error" => true, "message" => "qid find failure");
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     } else if ($res == 3) {
         $response = array("error" => true, "message" => "error inserting answer");
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     }
 });
 
 //http://lumivote.com/api/lumitrivia/question
 $app->put('/lumitrivia/question', function () use ($app) {
     $json = $app->request->getBody();
-    $input = json_decode($json, true); // parse the JSON into an assoc. array
+    $input = json_decode($json, true);
 
     $db = new DbHandler();
     $res = $db->updateQuestion($input);
 
     if ($res == 0) {
         $response = array("error" => false, "message" => "success");
-        echoRespnse(201, $response);
+        echoResponse(201, $response);
     } else if ($res == 1) {
         $response = array("error" => true, "message" => "failed to update question");
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     } else if ($res == 2) {
         $response = array("error" => true, "message" => "failed to delete answers");
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     } else if ($res == 3) {
         $response = array("error" => true, "message" => "error inserting answer");
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     }
 });
 
 //http://lumivote.com/api/lumitrivia/question
 $app->post('/lumitrivia/questiondelete', function () use ($app) {
     $json = $app->request->getBody();
-    $input = json_decode($json, true); // parse the JSON into an assoc. array
+    $input = json_decode($json, true);
 
     $db = new DbHandler();
     $res = $db->deleteQuestion($input);
 
     if ($res == 0) {
         $response = array("error" => false, "message" => "success");
-        echoRespnse(201, $response);
+        echoResponse(201, $response);
     } else if ($res == 1) {
         $response = array("error" => true, "message" => "failed to delete question");
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     } else if ($res == 2) {
         $response = array("error" => true, "message" => "failed to delete answers");
-        echoRespnse(200, $response);
+        echoResponse(200, $response);
     }
 });
 
 //http://lumivote.com/api/lumitrivia/question/:qid
 $app->get('/lumitrivia/question/:qid', function ($qid) use ($app) {
-    //echo $qid;
-
     $db = new DbHandler();
     $res = $db->getQuestionById($qid);
 
-    //var_dump($res);
     if ($res == 1) {
         $response = array("error" => true, "message" => "failed getting question");
-        echoRespnse(201, $response);
+        echoResponse(201, $response);
     } else if ($res == 1) {
         $response = array("error" => true, "message" => "failed getting answers");
-        echoRespnse(201, $response);
+        echoResponse(201, $response);
     } else {
-        echoRespnse(200, $res);
+        echoResponse(200, $res);
     }
 });
 
 //http://lumivote.com/api/lumitrivia/question
 $app->get('/lumitrivia/question', function () use ($app) {
-
     $db = new DbHandler();
     $res = $db->getRandomQuestion();
 
-    //var_dump($res);
     if ($res == 1) {
         $response = array("error" => true, "message" => "failed getting question");
-        echoRespnse(201, $response);
+        echoResponse(201, $response);
     } else if ($res == 1) {
         $response = array("error" => true, "message" => "failed getting answers");
-        echoRespnse(201, $response);
+        echoResponse(201, $response);
     } else {
-        echoRespnse(200, $res);
+        echoResponse(200, $res);
     }
 
 });
@@ -277,7 +272,7 @@ function verifyRequiredParams($required_fields)
         $app = \Slim\Slim::getInstance();
         $response ["error"] = true;
         $response ["message"] = 'Required field(s) ' . substr($error_fields, 0, -2) . ' is missing or empty';
-        echoRespnse(400, $response);
+        echoResponse(400, $response);
         $app->stop();
     }
 }
@@ -291,7 +286,7 @@ function validateEmail($email)
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $response["error"] = true;
         $response["message"] = 'Email address is not valid';
-        echoRespnse(400, $response);
+        echoResponse(400, $response);
         $app->stop();
     }
 }
@@ -304,7 +299,7 @@ function validateEmail($email)
  * @param Int $response
  *            Json response
  */
-function echoRespnse($status_code, $response)
+function echoResponse($status_code, $response)
 {
     $app = \Slim\Slim::getInstance();
     // Http response code
