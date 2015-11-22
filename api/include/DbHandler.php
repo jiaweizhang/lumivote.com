@@ -4,8 +4,7 @@
  * Class to handle all db operations
  * This class will have CRUD methods for database tables
  *
- * @author Ravi Tamada
- * @link URL Tutorial link
+ * @author Jiawei Zhang
  */
 class DbHandler
 {
@@ -15,13 +14,10 @@ class DbHandler
     function __construct()
     {
         require_once dirname(__FILE__) . '/DbConnect.php';
-        //require_once 'DbConnect.php';
-        // opening db connection
         $db = new DbConnect();
         $this->conn = $db->connect();
     }
 
-    /* ------------- `users` table method ------------------ */
 
     public function createUser($user)
     {
@@ -50,9 +46,6 @@ class DbHandler
         }
     }
 
-
-
-    /* --------------------- Non-authenticated methods ---------- */
     /**
      * Fetching all events
      */
@@ -204,7 +197,6 @@ class DbHandler
 
     public function getQuestionById($qid)
     {
-
         $stmt = $this->conn->prepare("SELECT * from questions WHERE qid=?");
         $stmt->bind_param("s", $qid);
         if (!$stmt->execute()) {
@@ -213,12 +205,9 @@ class DbHandler
         $question_result = $stmt->get_result()->fetch_assoc();
         $stmt->close();
 
-        $output = array();
+        if ($stmt = $this->conn->prepare("SELECT answer, iscorrect FROM answers WHERE qid=?")) {
 
-
-        if($stmt = $this->conn->prepare("SELECT answer, iscorrect FROM answers WHERE qid=?")){
-
-            $stmt->bind_param("s", $qid); //query is $_GET['query'], user input
+            $stmt->bind_param("s", $qid);
 
             $stmt->execute();
             $answer = null;
@@ -226,7 +215,7 @@ class DbHandler
             $stmt->bind_result($answer, $iscorrect);
 
             $menu = array();
-            while($stmt->fetch()){ //problematic code...
+            while ($stmt->fetch()) {
                 $menu[] = array(
                     "answer" => $answer,
                     "iscorrect" => $iscorrect
@@ -237,7 +226,6 @@ class DbHandler
             return 2;
         }
         $question_result['answers'] = $menu;
-        //$answers['answers'] = $menu;
 
         return $question_result;
     }
@@ -254,7 +242,6 @@ class DbHandler
 
         $qid = $qid2['qid'];
 
-
         $stmt = $this->conn->prepare("SELECT * from questions WHERE qid=?");
         $stmt->bind_param("s", $qid);
         if (!$stmt->execute()) {
@@ -263,12 +250,9 @@ class DbHandler
         $question_result = $stmt->get_result()->fetch_assoc();
         $stmt->close();
 
-        $output = array();
+        if ($stmt = $this->conn->prepare("SELECT answer, iscorrect FROM answers WHERE qid=?")) {
 
-
-        if($stmt = $this->conn->prepare("SELECT answer, iscorrect FROM answers WHERE qid=?")){
-
-            $stmt->bind_param("s", $qid); //query is $_GET['query'], user input
+            $stmt->bind_param("s", $qid);
 
             $stmt->execute();
             $answer = null;
@@ -276,7 +260,7 @@ class DbHandler
             $stmt->bind_result($answer, $iscorrect);
 
             $menu = array();
-            while($stmt->fetch()){ //problematic code...
+            while ($stmt->fetch()) {
                 $menu[] = array(
                     "answer" => $answer,
                     "iscorrect" => $iscorrect
@@ -287,8 +271,6 @@ class DbHandler
             return 2;
         }
         $question_result['answers'] = $menu;
-        //$answers['answers'] = $menu;
-
         return $question_result;
     }
 }
