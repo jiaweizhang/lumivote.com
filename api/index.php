@@ -263,7 +263,7 @@ $app->get('/lumitrivia/question/user/:username/:iscorrect', function ($username,
 });
 
 //http://lumivote.com/api/lumitrivia/usersubmit
-$app->put('/lumitrivia/question/usersubmit', function () use ($app) {
+$app->post('/lumitrivia/question/usersubmit', function () use ($app) {
 
     $json = $app->request->getBody();
     $input = json_decode($json, true);
