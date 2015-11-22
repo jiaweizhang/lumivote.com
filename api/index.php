@@ -244,6 +244,49 @@ $app->get('/lumitrivia/question', function () use ($app) {
 
 });
 
+//http://lumivote.com/api/lumitrivia/question
+$app->get('/lumitrivia/question/user/:username/:iscorrect', function ($username, $iscorrect) use ($app) {
+    $db = new DbHandler();
+    $res = $db->getQuestionByUsername($username, $iscorrect);
+
+    //var_dump($res);
+    if ($res == 1) {
+        $response = array("error" => true, "message" => "failed getting question");
+        echoResponse(201, $response);
+    } else if ($res == 1) {
+        $response = array("error" => true, "message" => "failed getting answers");
+        echoResponse(201, $response);
+    } else {
+        echoResponse(200, $res);
+    }
+
+});
+
+//http://lumivote.com/api/lumitrivia/usersubmit
+$app->put('/lumitrivia/question/usersubmit', function () use ($app) {
+
+    $json = $app->request->getBody();
+    $input = json_decode($json, true);
+
+    var_dump($input);
+
+    /*$db = new DbHandler();
+    $res = $db->deleteQuestion($input);
+
+    if ($res == 0) {
+        $response = array("error" => false, "message" => "success");
+        echoResponse(201, $response);
+    } else if ($res == 1) {
+        $response = array("error" => true, "message" => "failed to delete question");
+        echoResponse(200, $response);
+    } else if ($res == 2) {
+        $response = array("error" => true, "message" => "failed to delete answers");
+        echoResponse(200, $response);
+    }*/
+
+});
+
+
 /**
  * Verifying required params posted or not
  */

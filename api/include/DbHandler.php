@@ -273,6 +273,51 @@ class DbHandler
         $question_result['answers'] = $menu;
         return $question_result;
     }
+
+    public function getQuestionByUsername($username, $iscorrect)
+    {
+        $stmt = $this->conn->prepare("SELECT qid FROM useranswers WHERE username=? AND iscorrect=? ORDER BY RAND() LIMIT 1");
+        $stmt->bind_param("ss", $username, $iscorrect);
+        if (!$stmt->execute()) {
+            return 1;
+        }
+
+        $qid2 = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        $qid = $qid2['qid'];
+
+        $stmt = $this->conn->prepare("SELECT * from questions WHERE qid=?");
+        $stmt->bind_param("s", $qid);
+        if (!$stmt->execute()) {
+            return 1;
+        }
+        $question_result = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        if ($stmt = $this->conn->prepare("SELECT answer, iscorrect FROM answers WHERE qid=?")) {
+
+            $stmt->bind_param("s", $qid);
+
+            $stmt->execute();
+            $answer = null;
+            $iscorrect = null;
+            $stmt->bind_result($answer, $iscorrect);
+
+            $menu = array();
+            while ($stmt->fetch()) {
+                $menu[] = array(
+                    "answer" => $answer,
+                    "iscorrect" => $iscorrect
+                );
+            }
+            $stmt->close();
+        } else {
+            return 2;
+        }
+        $question_result['answers'] = $menu;
+        return $question_result;
+    }
 }
 
 ?>
