@@ -318,6 +318,24 @@ class DbHandler
         $question_result['answers'] = $menu;
         return $question_result;
     }
+
+    public function submitAnswer($input)
+    {
+        $usersubmit = $input['usersubmit'];
+        $username = $usersubmit['username'];
+        $qid = $usersubmit['qid'];
+        $iscorrect = $usersubmit['iscorrect'];
+
+        $stmt = $this->conn->prepare("REPLACE INTO  useranswers SET username = ?, qid = ?, iscorrect = ?");
+
+        //$stmt = $this->conn->prepare("INSERT IGNORE INTO useranswers (username, qid, iscorrect) VALUES (?, ?, ?)");
+
+        $stmt->bind_param("sss", $username, $qid, $iscorrect);
+        if (!$stmt->execute()) {
+            return 1;
+        }
+        return 0;
+    }
 }
 
 ?>
