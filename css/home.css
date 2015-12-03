@@ -6,72 +6,12 @@ body {
 
 /* COLOURS */
 
-.pcred { 
-	background-color: #F44336;
-}
-
 .lightgreybg {
 	background-color: #F7F7F7;
 }
 
-.greybg {
-	background-color: #333;
-}
-
 .darkgreybg {
 	background-color: #222222;
-}
-
-.bluegrey {
-	background-color: #455A64;
-}
-
-.bluebg {
-	background-color: #33CCFF;
-}
-
-.lightbluebg {
-	background-color: #1FBEEC;
-}
-
-.lightbluebg-darken {
-	background-color: #11A1CB;
-}
-
-.darkbluebg {
-	background-color: #454C5F;
-}
-
-.darkbluebg a {
-	color: white;
-}
-
-.yellowbg {
-	background-color: #FFC200;
-}
-
-.blackbg {
-	background-color: #252628;
-}
-
-.redbg {
-	background-color: #F44336;
-}
-
-.red a:hover {
-	color: #F44336;
-}
-
-.tealbg {
-	background-color: #00ABA9;
-}
-
-.orangebg {
-	background-color: #FF9900;
-}
-
-.lightblue {
-	background-color: #1FBEEC;
 }
 
 .whitebg {
@@ -85,38 +25,6 @@ body {
 
 /* BUTTONS & FORMS */
 
-.inputbox {
-	font-family: "proxima-nova",Helvetica, Arial, sans-serif;
-	font-size: 1.4rem;
-	letter-spacing: 0.05rem;
-	outline: none;
-	color: #888;
-	height: 26px !important;
-	width: 100%;
-}
-
-.button-learnmore {
-	/*background-color: #F44336;*/
-	background-color: #000000;
-	width: 135px;
-	display: block;
-	border-radius: 5px;
-	margin: 0 auto;
-	color: #fff;
-	font-weight: 600;
-	padding-top: 12px;
-	padding-bottom: 12px;
-}
-
-.button-learnmore:hover {
-	/*background-color: #FF6357;*/
-	background-color: #424242;
-
-}
-
-.large-button {
-	margin-right: 0;
-}
 
 a:hover {
 	text-decoration: none;
@@ -124,12 +32,6 @@ a:hover {
 
 .subscribe:hover {
 	color: #333;
-}
-
-@media (min-width: 800px) {
-	.inputbox {
-		width: 100%;
-	}
 }
 
 /* STRUCTURE */
@@ -249,15 +151,6 @@ opacity: 0.7;
 	 box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.33);
 }
 
-#shiftyheader {
-	height: 68px;
-	
-}
-
-.shiftysupporticon {
-	margin-top: 19px !important;
-}
-
 #logo {
 
 	display: block;
@@ -270,26 +163,6 @@ opacity: 0.7;
 }
 
 /* FEATURE */
-
-#feature_text {
-	margin-top: 30px;
-	text-align: center;
-	margin-bottom: 40px;
-
-}
-
-@media (min-width: 833px) {
-	#feature_text { 
-		margin-top: 30px;
-		
-	}
-} 
-
-
-#feature_text p {
-	color: white;
-}
-
 #feature_image img {
 		margin-top:100px;
 		width: 100%;
@@ -319,76 +192,9 @@ opacity: 0.7;
 
 }
 
-	#feature_text p {
-		margin-bottom: 50px;
-		color: white;
-			}
-
-	#feature_image {
-		text-align: center;
-	}
-
-} 
-
-#feature_text h2 {
-	font-size: 3rem;
-	opacity: 0.8;
 }
 
 /* APPS */
-
-#apps {
-	padding-top: 20px;
-}
-
-#apps p {
-	color: #222;
-}
-
-.appscreenshot {
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.inline-badge {
-	padding-left: 20px;
-	position: relative;
-	top: 5px;
-}
-
-.app {
-	text-align: left;
-}
-
-@media (min-width: 800px) {
-	
-	#apps { padding-top:0;}
-	.app p { max-width: 80%; }
-	.appscreenshot { text-align: left;}
-} 
-
-.app ul {
-	list-style: none;
-}
-
-.app li {
-	padding-left: 1.3rem;
-	margin-bottom: 1.4rem;
-}
-
-.app span {
-	display: inline-block;
-	padding-left: 40px;
-	margin-left: -20px;
-}
-
-#ourapps {
-	z-index: 2;
-	position: relative;
-	background-color: #fff;
-}
-
-
 .ios {
 	background: url('../img/iosicon.png') 0 0 no-repeat;
 
@@ -421,112 +227,11 @@ opacity: 0.7;
 			background-size: 24px 24px;
 		}
 
-		.windowsphone {
-			background: url('../img/wpicon@2x.png') no-repeat;
-			background-size: 24px 24px;
-
-		}
-
 		.webplayer {
 			background: url('../img/webicon@2x.png') no-repeat;
 			background-size: 24px 24px;
 		}
-
-		.desktop {
-			background: url('../img/desktopicon@2x.png') no-repeat;
-			background-size: 24px 24px;
-		}
-
-
 }
-
-
-
-#pw { 
-	margin-bottom: 20px;
-}
-
-
-
-/* ABOUT */
-
-#about {
-	padding-bottom: 100px;
-
-}
-
-#about p {
-	font-size: 1.6rem;
-	font-weight: 400;
-	
-	text-align: left;
-	line-height: 2.2rem;
-	margin-bottom: 10px;
-	
-}
-
-#about h3 {
-	text-align: left;
-	font-weight: 500;
-	
-	margin: 10px 0 0 0;
-	font-size: 2.6rem;
-	padding-bottom: 10px;
-}
-
-#about h4 {
-
-}
-
-#about h5 {
-	font-size: 1.8rem;
-	font-weight: 400;
-	
-	opacity: 0.8;
-	background: url('../img/twittericon_blue.png') no-repeat;
-	background-position: 2px;
-	padding-left: 30px;
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), all and (min-resolution: 192dpi) {
-	#about h5 {
-		background: url('../img/twittericon_blue@2x.png') no-repeat;
-		background-size: 21px 18px;
-		background-position: 2px;
-	}
-}
-
-#about h5:hover {
-	text-decoration: underline;
-}
-
-.monkey {
-	display: block;
-	height: 120px;
-	width: 120px;
-	margin-top: 30px;
-}
-
-@media (min-width: 800px) {
-
-	.monkey {
-		text-align: auto;
-	}
-
-	#about p {
-		text-align: left;
-	}
-
-	#about h3 {
-		text-align: left;
-		max-width: 80%;
-	}
-
-	#about-intro {
-		text-align: center !important;
-		max-width: 600px;
-	}
-} 
 
 /*****************************************************
 
@@ -669,7 +374,6 @@ left: 0;
 
 
 /* FEATURE GRID */
-
 #featuregrid {
 padding-top: 50px;
 max-width: 1100px;
@@ -732,23 +436,13 @@ margin-bottom: 50px;
 	margin: 20px auto;
 }
 
-#windowsstore {
-	
-	height: 40px;
-	width: 154px;
-	display: auto;
-	margin: 20px auto;
-}
-
-
-
 @media (min-width: 355px) {
 
-#playstore, #appstore, #windowsstore {
+#playstore, #appstore{
 	display: inline-block;
 }
 
-#playstore, #windowsstore {
+#playstore{
 	margin-left: 20px;
 }
 
@@ -774,10 +468,6 @@ margin-bottom: 50px;
 	height: 80px;
 	padding-bottom: 100px;
 	text-align: center;
-}
-
-.platform-icon h3 {
-
 }
 
 .platform-hover:hover {
@@ -807,9 +497,7 @@ margin-bottom: 50px;
 	margin-bottom: 20px;
 	padding: 0;
 }
-
 }
-
 
 @media (max-width: 680px) {
 
@@ -820,61 +508,10 @@ margin-bottom: 50px;
 	margin-bottom: 20px;
 	padding: 0;
 }
-
 }
 
 /* SYNCING */
-
-.syncbox {
-	text-align: center;
-	margin-top: 50px;
-	padding-bottom: 50px;
-}
-
-#sync-text {
-	margin: 0 auto;
-}
-
-#sync-text li {
-	background: url('../img/feature-tick.png') no-repeat;
-	padding-left: 30px;
-	background-position: 0px 6px;
-	text-align: center;
-}
-
-#sync-text ul {
-	
-}
-
-
-#sync-text ul li {
-	list-style: none;
-	font-weight: 400;
-}
-
-#sync-text p {
-	margin: 0 auto;
-	width: 80%;
-	}
-
-
 @media (min-width: 800px) {
-	.syncbox {
-		width: 1200px;
-		margin: 0 auto;
-		padding-left: 100px;
-		text-align: left;
-	}
-
-	#sync-text {
-		width: 30%;
-		float: left;
-		margin-top: 51px;
-	}
-
-#sync-text p {
-		width: 100%;
-	}
 
 	#syncimage {
 		width: 70%;
@@ -893,37 +530,9 @@ margin-bottom: 50px;
 	margin-bottom: 20px;
 }
 
-#sync p {
-	color: #404040;
-}
-
-#sync-features h3 {
-	font-size: 2.5rem;
-	font-weight: 300;
-	
-}
-
-#sync-features p {
-	color: #444;
-	
-}
-
-#sync-features {
-	margin-top: 50px;
-	text-align: center;
-}
-
-@media (min-width: 800px) {
-	#sync-features {
-		padding: 50px 0px 50px 0px;
-		margin-top: 30px;
-		}
-}
-
 #syncimg img {
 	width: 90%;
 }
-
 
 @media (min-width: 800px) {
 	#syncimg img {
@@ -932,25 +541,6 @@ margin-bottom: 50px;
 }
 
 /* DISCOVER */
-
-
-#discover {
-	text-align: center;
-	margin-top: 50px;
-}
-
-@media (min-width: 800px) {
-	#discover {
-		text-align: left;
-		}
-
-	#discover-text {
-		margin-top: 16px;
-
-}
-
-}
-
 #discoverphones {
 	text-align: center;
 	padding-top: 50px;
@@ -969,128 +559,6 @@ margin-bottom: 50px;
 .icon {
 	margin-bottom: 20px;
 }
-
-#discover p {
-	color: #404040;
-}
-
-#networktrending-desktop {
-	display: none;
-	/*height: 548px;*/
-}
-
-#networktrending-mobile {
-	display: block;
-	/*height: 548px;*/
-}
-
-@media (min-width: 720px) {
-	#networktrending-desktop {
-		display: block;
-
-	}
-
-	#networktrending-mobile {
-		display: none;
-	}
-}
-
-
-
-/* FULLY FEATURED */
-
-.fullyfeatured {
-	text-align: center;
-	padding-top: 20px;
-	color: white;
-}
-
-.fullyfeatured p {
-	color: #A1A1A1;
-	max-width: 60%;
-	padding: 0 20%;
-	padding-bottom: 50px;
-
-}
-
-/* UNIQUE FEATURES */
-
-.uniquefeatures li {
-	list-style: none;
-	text-align: left;
-	background: url('../img/feature-tick.png') no-repeat;
-	background-position: 20px 7px;
-	font-weight: 400;
-	font-size: 1.6rem;
-	border-bottom: 1px solid #eee;
-	padding: 2px 0 0px 60px;
-}
-
-.uniquefeatures {
-	position: relative;
-	height: auto;
-	margin-bottom: 50px;
-}
-
-.storeicons {
-	text-align: center;
-	margin-bottom: 50px;
-}
-
-.storeicons:hover {
-	cursor: pointer;
-}
-
-.button-learnmore {
-	padding-top: 8px;
-	padding-bottom: 8px;
-}
-
-@media (min-width: 1100px) {
-	.uniquefeatures {
-		height: 757px;
-
-	}
-
-	.uniquefeatures li {
-		border: none;
-	}
-
-}
-
-/* Store Links */
-
-#storelinks h3 {
-	text-align: center;
-
-}
-
-
-@media (max-width: 1300px) {
-
-#storelinks .three.columns {
-	width: 48%;
-	margin: 0;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 0;
-}
-
-}
-
-@media (max-width: 600px) {
-
-#storelinks .three.columns {
-	width: 100%;
-	margin: 0;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 0;
-}
-
-}
-
-
 
 
 /*FADE EFFECT */
