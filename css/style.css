@@ -1,6 +1,5 @@
 @import
-	url(https://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800|Montserrat|Lato:400,300)
-	;
+	url(https://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800|Montserrat|Lato:400,300);
 
 .sortorder:after {
 	content: '\25b2';
@@ -18,13 +17,10 @@
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
-	padding-top: 60px;
+	padding-top: 100px;
 }
 
 .jumbotron {
-	width: 100%;
-	height: 100%;
-	background-size: cover;
 	text-align: center;
 	background-color: transparent;
 }
@@ -34,11 +30,16 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 800;
 	font-style: italic;
+	padding-bottom: 25px;
 }
 
 .jumbotron h2, .jumbotron .h2 {
 	font-family: 'Lato';
 	font-weight: 300;
+}
+
+.jumbotron p, .jumbotron .p {
+	padding-bottom: 75px;
 }
 
 /*** NAVBAR ***/

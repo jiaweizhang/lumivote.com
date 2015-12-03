@@ -1,0 +1,23 @@
+.person-box {
+	padding-top: 50px;
+	padding-bottom: 20px;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.person-box p {
+	font-size: 20px;
+	font-weight: 400;
+	max-width: 500px;
+	color: #333;
+	line-height: 3rem;
+}
+
+a:link {
+    color: #4582ec;
+}
+
+.row {
+	background-color: #F7F7F7;
+	margin-bottom: 25px;
+}
