@@ -153,18 +153,18 @@ $app->post('/lumitrivia/question', function () use ($app) {
     $db = new DbHandler();
     $res = $db->createQuestion($input);
 
-    if ($res == 0) {
-        $response = array("error" => false, "message" => "question add success");
-        echoResponse(201, $response);
-    } else if ($res == 1) {
+    if ($res == -1) {
         $response = array("error" => true, "message" => "question add failure");
         echoResponse(200, $response);
-    } else if ($res == 2) {
+    } else if ($res == -2) {
         $response = array("error" => true, "message" => "qid find failure");
         echoResponse(200, $response);
-    } else if ($res == 3) {
+    } else if ($res == -3) {
         $response = array("error" => true, "message" => "error inserting answer");
         echoResponse(200, $response);
+    } else {
+        $response = array("error" => false, "message" => "question add success", "qid" => $res);
+        echoResponse(201, $response);
     }
 });
 
@@ -263,22 +263,23 @@ $app->get('/lumitrivia/question/user/:username/:iscorrect', function ($username,
 });
 
 //http://lumivote.com/api/lumitrivia/usersubmit
-$app->post('/lumitrivia/question/usersubmit', function () use ($app) {
+$app->post('/lumitrivia/usersubmit', function () use ($app) {
 
     $json = $app->request->getBody();
     $input = json_decode($json, true);
+
+    //var_dump($input);
 
     /*$usersubmit = $input['usersubmit'];
     $username = $usersubmit['username'];
     $qid = $usersubmit['qid'];
     $iscorrect = $usersubmit['iscorrect'];
 
-    var_dump($usersubmit);
     var_dump($username);
     var_dump($qid);
-    var_dump($iscorrect);
+    var_dump($iscorrect);*/
 
-    */
+
 
     $db = new DbHandler();
     $res = $db->submitAnswer($input);
@@ -291,6 +292,18 @@ $app->post('/lumitrivia/question/usersubmit', function () use ($app) {
         echoResponse(200, $response);
     }
 
+});
+
+$app->get('/lumitrivia/usersubmit/:username', function ($username) use ($app) {
+    $db = new DbHandler();
+    $res = $db->getSubmissionsByUsername($username);
+
+    if ($res == 1) {
+        $response = array("error" => true, "message" => "failed getting user submissions");
+        echoResponse(201, $response);
+    } else {
+        echoResponse(200, $res);
+    }
 });
 
 

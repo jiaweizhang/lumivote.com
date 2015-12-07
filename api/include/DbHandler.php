@@ -114,13 +114,13 @@ class DbHandler
         $result = $stmt->execute();
         $stmt->close();
         if (!$result) {
-            return 1;
+            return -1;
         }
 
         $stmt = $this->conn->prepare("SELECT qid from questions WHERE question=?");
         $stmt->bind_param("s", $question);
         if (!$stmt->execute()) {
-            return 2;
+            return -2;
         }
         $qid = $stmt->get_result()->fetch_assoc();
         $stmt->close();
@@ -130,11 +130,11 @@ class DbHandler
             $stmt->bind_param("sss", $qid['qid'], $val['answer'], $val['iscorrect']);
             $answerresult = $stmt->execute();
             if (!$answerresult) {
-                return 3;
+                return -3;
             }
             $stmt->close();
         }
-        return 0;
+        return $qid['qid'];
     }
 
     public function updateQuestion($input)
@@ -321,10 +321,9 @@ class DbHandler
 
     public function submitAnswer($input)
     {
-        $usersubmit = $input['usersubmit'];
-        $username = $usersubmit['username'];
-        $qid = $usersubmit['qid'];
-        $iscorrect = $usersubmit['iscorrect'];
+        $username = $input['username'];
+        $qid = $input['qid'];
+        $iscorrect = $input['iscorrect'];
 
         $stmt = $this->conn->prepare("REPLACE INTO  useranswers SET username = ?, qid = ?, iscorrect = ?");
 
@@ -335,6 +334,44 @@ class DbHandler
             return 1;
         }
         return 0;
+    }
+
+    public function getSubmissionsByUsername($username) {
+        if ($stmt = $this->conn->prepare("SELECT qid, iscorrect FROM useranswers WHERE username=?")) {
+            $stmt->bind_param("s", $username);
+
+            $stmt->execute();
+            $qid = null;
+            $iscorrect = null;
+            $stmt->bind_result($qid, $iscorrect);
+
+            $menu = array();
+            while ($stmt->fetch()) {
+                $menu[] = array(
+                    "qid" => $qid,
+                    "iscorrect" => $iscorrect
+                );
+            }
+            $stmt->close();
+        } else {
+            return 1;
+        }
+        $question_result['responses'] = $menu;
+
+        $correct = 0;
+        $incorrect = 0;
+        foreach ($menu as $v) {
+            if ($v['iscorrect'] == 1) {
+                $correct = $correct + 1;
+            } else {
+                $incorrect = $incorrect + 1;
+            }
+        }
+        $question_result['correct'] = $correct;
+        $question_result['incorrect'] = $incorrect;
+        $question_result['total'] = $correct +  $incorrect;
+
+        return $question_result;
     }
 }
 
