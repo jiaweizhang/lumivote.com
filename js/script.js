@@ -43,7 +43,12 @@ myApp.config(function ($routeProvider) {
         when('/lumitrivia', {
             templateUrl: 'pages/lumitrivia.html',
             controller: 'lumiController'
-        });
+        })
+
+    when('/login', {
+        templateUrl: 'pages/login.html',
+        controller: 'loginController'
+    });
 });
 
 myApp.run(function($rootScope, $cookies) {
@@ -52,8 +57,10 @@ myApp.run(function($rootScope, $cookies) {
         if(preval == null) {
             //$rootScope.loggedIn = false;
             console.log("cookie is not found");
+            return false;
         } else {
             console.log("cookie is found: " + preval);
+            return true;
         }
     };
 });
@@ -63,7 +70,8 @@ myApp.run( function($rootScope, $location) {
     // register listener to watch route changes
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
         console.log("decided to change route");
-        if ( $rootScope.loggedUser == null ) {
+        console.log("cookie found: " + $rootScope.checkCookies());
+        if ( $rootScope.checkCookies() == false ) {
             console.log($location.path());
             if ($location.path() == '/lumitrivia') {
                 $location.path("/login");
@@ -101,6 +109,10 @@ myApp.controller('lumiController', function ($scope, $http, $cookies, $location,
     $scope.message = "some content goes inimessage";
 
     $scope.init();
+});
+
+myApp.controller('loginController', function ($scope, $http) {
+
 });
 
 myApp.controller('aboutController', function ($scope) {
