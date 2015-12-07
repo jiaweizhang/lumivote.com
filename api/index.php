@@ -17,10 +17,8 @@ $app->post('/user', function () use ($app) {
     $json = $app->request->getBody();
     $input = json_decode($json, true); // parse the JSON into an assoc. array
 
-    $user = $input['user'];
-
     $db = new DbHandler();
-    $res = $db->createUser($user);
+    $res = $db->createUser($input);
 
     if ($res == USER_CREATED_SUCCESSFULLY) {
         $response = array("error" => false, "message" => "You are successfully registered");
