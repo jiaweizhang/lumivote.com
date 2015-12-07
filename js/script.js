@@ -115,23 +115,35 @@ myApp.controller('lumiController', function ($scope, $http, $cookies, $location,
 });
 
 myApp.controller('loginController', function ($scope, $http) {
-    var dataObj = {
-        name : $scope.name,
-        employees : $scope.employees,
-        headoffice : $scope.headoffice
-    };
-    var res = $http.post('/savecompany_json', dataObj);
-    res.success(function(data, status, headers, config) {
-        $scope.message = data;
-    });
-    res.error(function(data, status, headers, config) {
-        alert( "failure message: " + JSON.stringify({data: data}));
-    });
-    // Making the fields empty
-    //
-    $scope.name='';
-    $scope.employees='';
-    $scope.headoffice='';
+
+    $scope.sendRequest = function() {
+        var dataObj = {
+            username : $scope.username,
+            password : $scope.password
+        };
+        var res = $http.post('http://lumivote.com/api/login', dataObj);
+        res.success(function(data, status, headers, config) {
+            $scope.message = data;
+            console.log(data);
+        });
+        res.error(function(data, status, headers, config) {
+            alert( "failure message: " + JSON.stringify({data: data}));
+            console.log(data);
+        });
+        // Making the fields empty
+        //
+        $scope.username='';
+        $scope.password='';
+    }
+
+    $scope.submit = function() {
+        //console.log("received submit");
+        $scope.sendRequest();
+    }
+
+    $scope.init = function() {
+
+    }
 });
 
 myApp.controller('aboutController', function ($scope) {
