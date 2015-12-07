@@ -64,19 +64,23 @@ myApp.run(function ($rootScope, $cookies) {
             return true;
         }
     };
+
 });
 
 myApp.run(function ($rootScope, $location) {
 
     // register listener to watch route changes
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        console.log("decided to change route");
-        console.log("cookie found: " + $rootScope.checkCookies());
+        console.log("change route");
         if ($rootScope.checkCookies() == false) {
             console.log($location.path());
             if ($location.path() == '/lumitrivia') {
+                console.log("Switching to login");
                 $location.path("/login");
             }
+            //if ($location.path() == '/login') {
+            //    $location.path("/lumitrivia");
+            //}
         }
     });
 });
@@ -88,25 +92,14 @@ myApp.controller('mainController', function ($scope) {
 myApp.controller('lumiController', function ($scope, $http, $cookies, $location, $rootScope) {
 
     $scope.init = function () {
-        var preval = $cookies.get('passhash');
+        var preval = $cookies.get('username');
         if (preval == null) {
             //$rootScope.loggedIn = false;
-            $scope.redirect();
+            //$scope.redirect();
             console.log("cookie is not found");
         } else {
             console.log("cookie is found: " + preval);
         }
-    }
-
-    $scope.redirect = function () {
-        console.log("running redirect");
-        $scope.$watch(function () {
-            return $location.path();
-        }, function (newValue, oldValue) {
-            if ($scope.loggedIn == false && newValue != '/login') {
-                $location.path('/login');
-            }
-        });
     }
 
     $scope.message = "some content goes inimessage";
@@ -114,24 +107,39 @@ myApp.controller('lumiController', function ($scope, $http, $cookies, $location,
     $scope.init();
 });
 
-myApp.controller('loginController', function ($scope, $http) {
+myApp.controller('loginController', function ($scope, $http, $location, $cookies) {
 
     $scope.sendRequest = function() {
         var dataObj = {
             username : $scope.username,
             password : $scope.password
         };
-        var res = $http.post('http://lumivote.com/api/login', dataObj);
+        /*var res = $http.post('http://lumivote.com/api/login', dataObj);
         res.success(function(data, status, headers, config) {
             $scope.message = data;
             console.log(data);
+            if ($scope.message.data == 1) {
+                // valid username
+                console.log('valid username');
+                $location.path("/lumitrivia");
+            } else if ($scope.message.data == 0) {
+                // invalid username
+                console.log('invalid username');
+                $scope.usernameError = "Invalid Username. Please try again.";
+            } else {
+                // error
+                console.log('error logging in');
+            }
         });
         res.error(function(data, status, headers, config) {
             alert( "failure message: " + JSON.stringify({data: data}));
             console.log(data);
         });
         // Making the fields empty
-        //
+        //*/
+        $cookies.put('username', $scope.password);
+        console.log("put password: "+$scope.password);
+        $location.path("/lumitrivia");
         $scope.username='';
         $scope.password='';
     }
