@@ -45,16 +45,17 @@ myApp.config(function ($routeProvider) {
             controller: 'lumiController'
         })
 
-    when('/login', {
-        templateUrl: 'pages/login.html',
-        controller: 'loginController'
-    });
+        .
+        when('/login', {
+            templateUrl: 'pages/login.html',
+            controller: 'loginController'
+        });
 });
 
-myApp.run(function($rootScope, $cookies) {
-    $rootScope.checkCookies = function() {
-        var preval = $cookies.get('passhash');
-        if(preval == null) {
+myApp.run(function ($rootScope, $cookies) {
+    $rootScope.checkCookies = function () {
+        var preval = $cookies.get('username');
+        if (preval == null) {
             //$rootScope.loggedIn = false;
             console.log("cookie is not found");
             return false;
@@ -65,13 +66,13 @@ myApp.run(function($rootScope, $cookies) {
     };
 });
 
-myApp.run( function($rootScope, $location) {
+myApp.run(function ($rootScope, $location) {
 
     // register listener to watch route changes
-    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
         console.log("decided to change route");
         console.log("cookie found: " + $rootScope.checkCookies());
-        if ( $rootScope.checkCookies() == false ) {
+        if ($rootScope.checkCookies() == false) {
             console.log($location.path());
             if ($location.path() == '/lumitrivia') {
                 $location.path("/login");
@@ -86,9 +87,9 @@ myApp.controller('mainController', function ($scope) {
 
 myApp.controller('lumiController', function ($scope, $http, $cookies, $location, $rootScope) {
 
-    $scope.init = function() {
+    $scope.init = function () {
         var preval = $cookies.get('passhash');
-        if(preval == null) {
+        if (preval == null) {
             //$rootScope.loggedIn = false;
             $scope.redirect();
             console.log("cookie is not found");
@@ -97,10 +98,12 @@ myApp.controller('lumiController', function ($scope, $http, $cookies, $location,
         }
     }
 
-    $scope.redirect = function() {
+    $scope.redirect = function () {
         console.log("running redirect");
-        $scope.$watch(function() { return $location.path(); }, function(newValue, oldValue){
-            if ($scope.loggedIn == false && newValue != '/login'){
+        $scope.$watch(function () {
+            return $location.path();
+        }, function (newValue, oldValue) {
+            if ($scope.loggedIn == false && newValue != '/login') {
                 $location.path('/login');
             }
         });
@@ -112,7 +115,23 @@ myApp.controller('lumiController', function ($scope, $http, $cookies, $location,
 });
 
 myApp.controller('loginController', function ($scope, $http) {
-
+    var dataObj = {
+        name : $scope.name,
+        employees : $scope.employees,
+        headoffice : $scope.headoffice
+    };
+    var res = $http.post('/savecompany_json', dataObj);
+    res.success(function(data, status, headers, config) {
+        $scope.message = data;
+    });
+    res.error(function(data, status, headers, config) {
+        alert( "failure message: " + JSON.stringify({data: data}));
+    });
+    // Making the fields empty
+    //
+    $scope.name='';
+    $scope.employees='';
+    $scope.headoffice='';
 });
 
 myApp.controller('aboutController', function ($scope) {
