@@ -91,15 +91,38 @@ myApp.controller('mainController', function ($scope) {
 
 myApp.controller('lumiController', function ($scope, $http, $cookies, $location, $rootScope) {
 
-    $scope.init = function () {
-        var preval = $cookies.get('username');
-        if (preval == null) {
-            //$rootScope.loggedIn = false;
-            //$scope.redirect();
-            console.log("cookie is not found");
+    $scope.logOut = function(){
+        $cookies.remove("username");
+        console.log("removed cookie");
+        $location.path("/login");
+    }
+
+    $scope.submit = function(iscorrect){
+        if (iscorrect==1) {
+            console.log("answered correctly");
         } else {
-            console.log("cookie is found: " + preval);
+            console.log("answered incorrectly");
+            console.log("answered"+iscorrect);
         }
+    }
+
+    $scope.init = function () {
+        $scope.username = $cookies.get("username");
+        console.log("username for this session is: "+$scope.username);
+
+
+        // post for scoreboard
+        $http.get("http://lumivote.com/api/lumitrivia/usersubmit/"+$scope.username).success(
+            function (response) {
+                $scope.score = response;
+                //console.log($scope.score);
+            })
+
+        $http.get("http://lumivote.com/api/lumitrivia/question").success(
+            function (response) {
+                $scope.question = response;
+                console.log($scope.question);
+            })
     }
 
     $scope.message = "some content goes inimessage";
@@ -110,22 +133,26 @@ myApp.controller('lumiController', function ($scope, $http, $cookies, $location,
 myApp.controller('loginController', function ($scope, $http, $location, $cookies) {
 
     $scope.sendRequest = function() {
+        var username = $scope.username;
         var dataObj = {
             username : $scope.username,
             password : $scope.password
         };
-        /*var res = $http.post('http://lumivote.com/api/login', dataObj);
+        var res = $http.post('http://lumivote.com/api/login', dataObj);
         res.success(function(data, status, headers, config) {
             $scope.message = data;
             console.log(data);
             if ($scope.message.data == 1) {
                 // valid username
                 console.log('valid username');
+                $cookies.put('username', username);
+                console.log("put username: " +username);
                 $location.path("/lumitrivia");
             } else if ($scope.message.data == 0) {
                 // invalid username
                 console.log('invalid username');
                 $scope.usernameError = "Invalid Username. Please try again.";
+                alert("Username is invalid");
             } else {
                 // error
                 console.log('error logging in');
@@ -136,10 +163,10 @@ myApp.controller('loginController', function ($scope, $http, $location, $cookies
             console.log(data);
         });
         // Making the fields empty
-        //*/
-        $cookies.put('username', $scope.password);
-        console.log("put password: "+$scope.password);
-        $location.path("/lumitrivia");
+        //
+        /*$cookies.put('username', $scope.username);
+        console.log("put username: "+$scope.username);
+        $location.path("/lumitrivia");*/
         $scope.username='';
         $scope.password='';
     }
