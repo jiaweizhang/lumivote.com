@@ -1,5 +1,5 @@
 var myApp = angular
-    .module('myApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'ngLoadingSpinner']);
+    .module('myApp', ['ngRoute', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ngLoadingSpinner']);
 
 myApp.config(function ($routeProvider) {
     $routeProvider
@@ -37,11 +37,70 @@ myApp.config(function ($routeProvider) {
         .when('/about', {
             templateUrl: 'pages/about.html',
             controller: 'aboutController'
+        })
+
+        .
+        when('/lumitrivia', {
+            templateUrl: 'pages/lumitrivia.html',
+            controller: 'lumiController'
         });
+});
+
+myApp.run(function($rootScope, $cookies) {
+    $rootScope.checkCookies = function() {
+        var preval = $cookies.get('passhash');
+        if(preval == null) {
+            //$rootScope.loggedIn = false;
+            console.log("cookie is not found");
+        } else {
+            console.log("cookie is found: " + preval);
+        }
+    };
+});
+
+myApp.run( function($rootScope, $location) {
+
+    // register listener to watch route changes
+    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+        console.log("decided to change route");
+        if ( $rootScope.loggedUser == null ) {
+            console.log($location.path());
+            if ($location.path() == '/lumitrivia') {
+                $location.path("/login");
+            }
+        }
+    });
 });
 
 myApp.controller('mainController', function ($scope) {
 
+});
+
+myApp.controller('lumiController', function ($scope, $http, $cookies, $location, $rootScope) {
+
+    $scope.init = function() {
+        var preval = $cookies.get('passhash');
+        if(preval == null) {
+            //$rootScope.loggedIn = false;
+            $scope.redirect();
+            console.log("cookie is not found");
+        } else {
+            console.log("cookie is found: " + preval);
+        }
+    }
+
+    $scope.redirect = function() {
+        console.log("running redirect");
+        $scope.$watch(function() { return $location.path(); }, function(newValue, oldValue){
+            if ($scope.loggedIn == false && newValue != '/login'){
+                $location.path('/login');
+            }
+        });
+    }
+
+    $scope.message = "some content goes inimessage";
+
+    $scope.init();
 });
 
 myApp.controller('aboutController', function ($scope) {
