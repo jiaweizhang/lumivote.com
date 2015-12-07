@@ -97,16 +97,41 @@ myApp.controller('lumiController', function ($scope, $http, $cookies, $location,
         $location.path("/login");
     }
 
+    $scope.next = function() {
+        $scope.init();
+    }
+
     $scope.submit = function(iscorrect){
+        $scope.answered = true;
         if (iscorrect==1) {
             console.log("answered correctly");
+            $scope.responseMessage = "Correct!"
         } else {
             console.log("answered incorrectly");
-            console.log("answered"+iscorrect);
+            $scope.responseMessage = "Incorrect!"
         }
+
+        var username = $scope.username;
+        var dataObj = {
+            username : $scope.username,
+            qid : $scope.question.qid,
+            iscorrect : iscorrect
+        };
+        var res = $http.post('http://lumivote.com/api/lumitrivia/usersubmit', dataObj);
+        res.success(function(data, status, headers, config) {
+            console.log(data);
+        });
+        res.error(function(data, status, headers, config) {
+            alert( "failure message: " + JSON.stringify({data: data}));
+            console.log(data);
+        });
+        console.log("sent post request to submit response");
     }
 
     $scope.init = function () {
+        console.log("reinitializing");
+        $scope.responseMessage = "";
+        $scope.answered = false;
         $scope.username = $cookies.get("username");
         console.log("username for this session is: "+$scope.username);
 
@@ -115,7 +140,7 @@ myApp.controller('lumiController', function ($scope, $http, $cookies, $location,
         $http.get("http://lumivote.com/api/lumitrivia/usersubmit/"+$scope.username).success(
             function (response) {
                 $scope.score = response;
-                //console.log($scope.score);
+                console.log($scope.score);
             })
 
         $http.get("http://lumivote.com/api/lumitrivia/question").success(

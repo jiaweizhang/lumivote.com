@@ -4,20 +4,46 @@
 </head>
 <body>
 
-<button ng-click="logOut()">Log Out</button>
+<div class="container">
 
-    <p>This is Lumitrivia home page</p>
-<p ng-bind="message"></p>
+    <div class="row">
+        <div class="col-sm-3">
+            <h2>Score</h2>
 
-<h2>Scoreboard</h2>
-<p>Number of total answers: <span ng-bind="score.total"></span></p>
-<p>Number of total correct: <span ng-bind="score.correct"></span></p>
-<p>Number of total incorrect: <span ng-bind="score.incorrect"></span></p>
+            <p>Total Answered: <span ng-bind="score.total"></span></p>
 
-<h2>Lumitrivia</h2>
-<p ng-bind="question.question"></p>
-<div ng-repeat="answer in question.answers">
-    <button ng-bind="answer.answer" ng-click="submit(answer.iscorrect)"></button>
+            <p>Correctly Answered: <span ng-bind="score.correct"></span></p>
+
+            <p>Incorrectly Answered: <span ng-bind="score.incorrect"></span></p>
+
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-3">
+            <div>User: <span ng-bind="username"></span></div>
+            <br>
+
+            <div>
+                <button type="button" class="btn btn-danger" ng-click="logOut()">Log Out</button>
+            </div>
+
+        </div>
+    </div>
+
+    <h2>Question</h2>
+
+    <h3 ng-bind="question.question"></h3>
+
+    <div style="padding: 5px; margin: 5px" ng-repeat="answer in question.answers" class="row">
+        <div class="col-sm-1" style="text-align: center;">
+            <button type="button" class="btn btn-default" ng-disabled="answered"
+                    ng-click="submit(answer.iscorrect)"><i
+                    class="fa fa-check-square-o fa" style="font-size: 18px"></i></button>
+        </div>
+        <div class="col-sm-11" ng-bind="answer.answer" style="font-size: 21px"></div>
+    </div>
+    <h3 style="height: 30px;" ng-bind="responseMessage"></h3>
+
+    <button type="button" class="btn btn-primary" ng-click="next()">Next Question</button>
 </div>
 </body>
 </html>
