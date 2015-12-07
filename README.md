@@ -2,6 +2,26 @@ Lumivote.com
 ==========
 Source code for the Lumivote website at http://lumivote.com/
 
+##Overview
+
+###Code Overview
+* Front-end interface with Back-end Web API
+* Front-end primarily implemented in HTML, CSS, AngularJS
+* Back-end implemented using PHP with MariaSQL Database
+
+###How to Use
+* Set up Google Cloud SQL for database storage
+* Import included .sql file
+* Set up Google App Engine and connect to Google Cloud SQL
+* Deploy the entire package using app engine
+* Deploy PhpMyAdmin using app engine if administrator database access is desired
+* Use Java moderator tool to add, edit, delete questions and add, delete users if desired
+
+###Limitations
+* Initial setup is time-consuming (setting up Google Cloud)
+* Expensive front-end instance and database hosting
+* PHP is antiquated and difficult to use with future desired functionalities like push notifications
+
 ##About
 Written by Jiawei Zhang
 
@@ -31,6 +51,7 @@ Data taken from the following APIs:
 * [NY Times Congress API](http://developer.nytimes.com/docs/read/congress_api)
 * [GovTrack.us](https://www.govtrack.us)
 * [congress-legislators Database](https://github.com/unitedstates/congress-legislators)
+
 
 Special thanks to:
 * Alex Dao for corresponding Android application
