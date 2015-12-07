@@ -33,6 +33,25 @@ $app->post('/user', function () use ($app) {
     }
 });
 
+$app->post('/login', function () use ($app) {
+    $json = $app->request->getBody();
+    $input = json_decode($json, true);
+
+
+    $db = new DBHandler();
+    $res = $db->login($input);
+
+    if ($res == -1) {
+        $response = array("error" => true, "message" => "Login Failed");
+        echoResponse(201, $response);
+    } else {
+        $response["error"] = false;
+        $response["message"] = "Success";
+        $response["data"] = $res;
+        echoResponse(200, $response);
+    }
+});
+
 
 /**
  * Get all timeline events

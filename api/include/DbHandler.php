@@ -46,6 +46,29 @@ class DbHandler
         }
     }
 
+    public function login($input) {
+        $username = $input['username'];
+        $password = $input['password'];
+
+        $stmt = $this->conn->prepare("SELECT username FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        if($result = $stmt->execute()) {
+
+            $stmt->store_result();
+            $numRows = $stmt->num_rows;
+            return $numRows;
+        }
+        return -1;
+        //return $row_cnt;
+        /*if ($result = $stmt->execute()) {
+
+            $numRows = $result->num_rows;
+            return $numRows;
+        } else {
+            return -1;
+        }*/
+    }
+
     /**
      * Fetching all events
      */
